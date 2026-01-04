@@ -483,6 +483,7 @@ void game_draw_card(struct Card *card, struct DrawObject *draw_override)
     y -= ((CARD_HEIGHT * draw->scale) - CARD_HEIGHT) / 2.0f;
     float w = CARD_WIDTH * draw->scale;
     float h = CARD_HEIGHT * draw->scale;
+    card->draw.angle = -(SCREEN_WIDTH/2-x)/2000.0f;
 
     graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(x, y, w, h, g_enhancement_tex_coords[card->enhancement].x, g_enhancement_tex_coords[card->enhancement].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, COLOR_WHITE, card->draw.angle);
@@ -511,7 +512,7 @@ void game_draw_card(struct Card *card, struct DrawObject *draw_override)
     {
         graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
         uint32_t color = 0xFFFFFF | ((uint32_t)(255.0f * (card->draw.white_factor > 1.0f ? 1.0f : card->draw.white_factor))<<24);        
-        graphics_draw_quad(x, y, w, h, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, color);        
+        graphics_draw_rotated_quad(x, y, w, h, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, color, card->draw.angle);        
     }
 }
 
