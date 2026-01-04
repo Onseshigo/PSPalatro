@@ -528,9 +528,27 @@ extern double g_booster_packs_weights_total;
 
 extern char *g_poker_hand_names[GAME_POKER_HAND_COUNT];
 
-#define GAME_BLIND_SMALL    0
-#define GAME_BLIND_LARGE    1
-#define GAME_BLIND_BOSS     2
+#define GAME_BLIND_SMALL            0
+#define GAME_BLIND_LARGE            1
+#define GAME_BLIND_BOSS             2
+#define GAME_BLIND_TYPE_COUNT       3
+
+struct Blind
+{
+    struct DrawObject draw;
+    int type;
+    int size;
+    int image;
+};
+
+struct BlindType
+{
+    int type;
+    const char *name;
+    int u, v;
+};
+
+extern struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT];
 
 #define SCORE_NUMBER_ADD_CHIPS  0
 #define SCORE_NUMBER_ADD_MULT   1
@@ -1024,6 +1042,7 @@ void audio_destroy_ogg(int ogg_id);
 
 #define GRAPHICS_TEXTURE_FILTER_NEAREST     GU_NEAREST
 #define GRAPHICS_TEXTURE_FILTER_LINEAR      GU_LINEAR
+#define GRAPHICS_TEXTURE_CURRENT_FILTER     GRAPHICS_TEXTURE_FILTER_NEAREST
 
 struct Image
 {

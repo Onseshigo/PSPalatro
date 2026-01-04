@@ -958,7 +958,7 @@ void graphics_draw_text_center(int font, const char *text, float x, float y, flo
 
 void graphics_draw_text(int font, const char *text, float x, float y, float size, uint32_t color)
 {
-    graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_FILTER_NEAREST);
+    graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_CURRENT_FILTER);
 
     int count = 0;
     unsigned char c = text[0];
@@ -1023,7 +1023,7 @@ void graphics_draw_text_formatted(int font, const char *text, void *item, float 
     uint32_t current_color = color;
     uint32_t current_background_color = 0;
 
-    graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_FILTER_NEAREST);
+    graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_CURRENT_FILTER);
 
     char str[32];
     bool background_start = false;
@@ -1067,7 +1067,7 @@ void graphics_draw_text_formatted(int font, const char *text, void *item, float 
                             graphics_draw_solid_quad(floorf(x) + (size * g_fonts[font].width) * length, floorf(y),
                                 (size * g_fonts[font].width), (size * g_fonts[font].height),
                                 current_background_color);
-                            graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_FILTER_NEAREST);
+                            graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_CURRENT_FILTER);
                         }
                         graphics_draw_quad(floorf(x) + (size * g_fonts[font].width) * length, floorf(y),
                             (size * g_fonts[font].width), (size * g_fonts[font].height),
@@ -1087,7 +1087,7 @@ void graphics_draw_text_formatted(int font, const char *text, void *item, float 
                 graphics_draw_solid_quad(floorf(x) + (size * g_fonts[font].width) * length - (background_start ? 1.0f : 0.0f), floorf(y),
                     (size * g_fonts[font].width) + (background_start ? 1.0f : 0.0f), (size * g_fonts[font].height),
                     current_background_color);
-                graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_FILTER_NEAREST);
+                graphics_set_texture(g_fonts[font].texture, GRAPHICS_TEXTURE_CURRENT_FILTER);
 
                 background_start = false;
             }

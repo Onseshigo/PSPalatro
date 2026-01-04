@@ -426,17 +426,8 @@ bool game_util_played_hand_contains_scoring_face()
 
 char *game_util_get_blind_name(int blind)
 {
-    switch(blind)
-    {
-        case GAME_BLIND_SMALL:
-            return "Small Blind";
-        case GAME_BLIND_LARGE:
-            return "Big Blind";
-        case GAME_BLIND_BOSS:
-            return "Boss Blind";
-    }
-
-    return "";
+    struct BlindType *blind_type = &g_blind_types[blind];
+    return (char *)blind_type->name;
 }
 
 bool game_util_is_joker_slot_available()
