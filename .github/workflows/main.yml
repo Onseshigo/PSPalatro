@@ -3,6 +3,7 @@ name: EBOOT Build
 on:
   push:
     branches: [ main, master ]   # Runs only on pushes to main
+  workflow_dispatch:
 
 jobs:
   build:
