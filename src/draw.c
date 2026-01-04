@@ -1142,7 +1142,7 @@ void game_draw_cash_out_panel()
         sprintf(str, "Cash Out: $%d", g_game_state.cash_out_value);
         float str_size = (float)strlen(str) * 8.0f;
         graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 6.0f, y - 10.0f, str_size + 12.0f, 20.0f, COLOR_WHITE);
-        graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 4.0f, y - 8.0f, str_size + 8.0f, 16.0f, COLOR_LIGHT_RED);
+        graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 4.0f, y - 8.0f, str_size + 8.0f, 16.0f, COLOR_TEXT_ORANGE);
         graphics_draw_text_center(font_big, str, (140.0f + 125.0f), y, 1.0f, COLOR_WHITE);
     }
     y += 20;
