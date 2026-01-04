@@ -317,7 +317,6 @@ void game_input_update_hand(bool no_input)
             g_game_state.current_poker_hand = GAME_POKER_HAND_NONE;
             g_game_state.current_base_chips = 0;
             g_game_state.current_base_mult = 0;
-            g_game_state.highlighted_item = 0;
             game_set_card_hand_positions();
         }
 
