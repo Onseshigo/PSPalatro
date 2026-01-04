@@ -1144,34 +1144,44 @@ void game_draw_cash_out_panel()
         graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 6.0f, y - 10.0f, str_size + 12.0f, 20.0f, COLOR_WHITE);
         graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 4.0f, y - 8.0f, str_size + 8.0f, 16.0f, COLOR_TEXT_ORANGE);
         graphics_draw_text_center(font_big, str, (140.0f + 125.0f), y, 1.0f, COLOR_WHITE);
+        y += 20;
     }
-    y += 20;
     if (g_game_state.cash_out_blind > -1)
     {
         graphics_draw_text(font_small, game_util_get_blind_name(g_game_state.blind), x + 4, y, 1.0f, COLOR_WHITE);
+        y += 16;
+        
+        graphics_draw_text(font_small, "Score at least: ", x + 4, y, 1.0f, COLOR_WHITE);
+        sprintf(str, "%.0f", game_get_current_blind_score());
+        graphics_draw_text(font_big, str, x + 100, y, 1.0f, COLOR_TEXT_RED);
         sprintf(str, "$%d", g_game_state.cash_out_blind);
-        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_WHITE);
+        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
+        y += 16;
+
+        graphics_draw_text(font_small, "........................................", x + 4, y, 1.0f, COLOR_WHITE);
+        y += 16;
     }
-    y += 16;
-    if (g_game_state.cash_out_hands > -1)
+    if (g_game_state.cash_out_hands > 0)
     {
-        graphics_draw_text(font_small, "Remaining hands", x + 4, y, 1.0f, COLOR_WHITE);
+        sprintf(str, "%d", g_game_state.cash_out_hands);
+        graphics_draw_text(font_big, str, x + 4, y, 1.0f, COLOR_TEXT_BLUE);
+        graphics_draw_text(font_small, "Remaining hands ($1 each)", x + 4 + 16, y, 1.0f, COLOR_WHITE);
         sprintf(str, "$%d", g_game_state.cash_out_hands);
-        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_WHITE);
+        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
+        y += 16;
     }
-    y += 16;
     if (g_game_state.cash_out_interest > -1)
     {
         graphics_draw_text(font_small, "Interest", x + 4, y, 1.0f, COLOR_WHITE);
         sprintf(str, "$%d", g_game_state.cash_out_interest);
-        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_WHITE);
+        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
+        y += 16;
     }
-    y += 16;
     if (g_game_state.cash_out_jokers > -1)
     {
         graphics_draw_text(font_small, "Jokers", x + 4, y, 1.0f, COLOR_WHITE);
         sprintf(str, "$%d", g_game_state.cash_out_jokers);
-        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_WHITE);
+        graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
     }
 }
 

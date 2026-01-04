@@ -1835,6 +1835,7 @@ bool automated_event_cash_out()
 
     AUTO_EVENT_STAGE_WAIT(CASHOUT_LINE_TIMESPAN)
 
+    // TODO: Interest before adding money
     AUTO_EVENT_STAGE() // Interest money
     {
         int value_to_consider = CLAMP(g_game_state.wealth, 0, 25);
