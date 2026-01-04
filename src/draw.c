@@ -158,8 +158,11 @@ void game_draw_clear_loading(uint32_t color)
 {
     graphics_clear_loading_text(color);
 
-    graphics_show_loading_text(font_small, "Port by S\x82rgio Vieira", SCREEN_WIDTH - 126.0f, SCREEN_HEIGHT - 16.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
-    graphics_show_loading_text(font_small, "https://github.com/internalregister", SCREEN_WIDTH - 210.0f, SCREEN_HEIGHT - 8.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
+    graphics_show_loading_text(font_small, "Port by S\x82rgio Vieira", SCREEN_WIDTH - 126.0f, SCREEN_HEIGHT - 32.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
+    graphics_show_loading_text(font_small, "https://github.com/internalregister", SCREEN_WIDTH - 210.0f, SCREEN_HEIGHT - 24.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
+
+    graphics_show_loading_text(font_small, "Fork by Onseshigo", SCREEN_WIDTH - 102.0f, SCREEN_HEIGHT - 16.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
+    graphics_show_loading_text(font_small, "https://github.com/onseshigo", SCREEN_WIDTH - 168.0f, SCREEN_HEIGHT - 8.0f, 1.0f, COLOR_LIGHT_GREY, false, COLOR_BLACK);
 }
 
 void game_draw_loading_text(const char *text, uint32_t color, uint32_t back_color)
