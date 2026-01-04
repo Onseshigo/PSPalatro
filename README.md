@@ -1,10 +1,9 @@
-## [The project has since been removed from GitHub due to a DMCA takedown by the original game's author. It's something I did not contest and I respect the author 's opinion and action and therefore this project is now dead.]
 ## InternalRegister (original developer of the project)
-# <ins>PSP-latro</ins>
+# <ins>PSPalatro</ins>
 
-This is a **limited** fan-recreation of the game **Balatro** for **Sony's Playstation Portable** console. I will keep this up as an archive.
+This is a **limited** fan-recreation of the game **Balatro** for **Sony's Playstation Portable** console.
 
-The project is for <ins>legitimate owners of a copy of **Balatro**</ins> who wish to experience a partial demo of the game on the PSP.
+The project is for <ins>legitimate owners of a copy of **Balatro**</ins> who wish to experience a partial implementation of the game on the PSP.
 
 
 <a href="https://www.youtube.com/watch?v=qRNbH5ELMnE">
@@ -24,7 +23,7 @@ The project is for <ins>legitimate owners of a copy of **Balatro**</ins> who wis
 [![Balatro on Steam](https://custom-icon-badges.demolab.com/badge/Balatro%20on%20Steam-194c84?logo=steam&logoColor=fff)](https://store.steampowered.com/app/2379780/Balatro/)
 [![Balatro on Humble Bundle](https://img.shields.io/badge/Balatro%20on%20Humble%20Bundle-%23494F5C.svg?logo=HumbleBundle&logoColor=white)](https://www.humblebundle.com/store/balatro?srsltid=AfmBOoqS2De8T4kizzWxJS1pbvQosJ_bYCl4qvC6LA1YLPAh4sZ8vJqO)
 
-## <ins>Project Description:</ins> 
+## <ins>Original Description:</ins> 
  
 I did this for fun in whatever free time I managed to get.  
 <ins>There is **no** roadmap and **no** plans for future updates, they may come or not, I will try to fix bugs whenever I can.</ins>
@@ -48,19 +47,19 @@ Not all implemented rules match the original game exactly, some of them I couldn
 
 ## **<ins>Build Instructions</ins>**
 
-1.) Install the PSPSDK (link [here](https://pspdev.github.io/pspsdk/))
-2.) Check if the following packages are installed for the PSPSDK (using for example psp-pacman):
+1. Install the PSPSDK (link [here](https://pspdev.github.io/pspsdk/))
+2. Check if the following packages are installed for the PSPSDK (using for example psp-pacman):
     - `libzip`
     - `vorbis`
     - `liblzma`
     - `stb`
-3.) run `make`
+3. Run `make`
 
 ## **<ins>Run Instructions</ins>**
 
-1.) Copy `EBOOT.PBP` and the files in the `assets` folder to a folder for the game in your PSP.
-2.) Copy your official Balatro copy executable to that same folder.
-3.) Modify the `settings.ini` file (see below for details). `(optional)`
+1. Copy `EBOOT.PBP` and the files in the `assets` folder to a folder for the game in your PSP.
+2. Copy your official Balatro copy executable to that same folder.
+3. Modify the `settings.ini` file (see below for details). `(optional)`
 
 ## <ins>Configuration</ins> (`settings.ini` file)
 
