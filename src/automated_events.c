@@ -1867,10 +1867,10 @@ bool automated_event_cash_out()
 
         switch (game_util_get_joker_type(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER)))
         {
-            case JOKER_TYPE_GOLDEN_JOKER:
+            case JOKER_TYPE_ROCKET:
             {
                 if (g_game_state.cash_out_jokers < 0) g_game_state.cash_out_jokers = 0;
-                g_game_state.cash_out_jokers += 4;
+                g_game_state.cash_out_jokers += game_util_get_joker_param(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER));
                 g_game_state.cash_out_value += g_game_state.cash_out_jokers;
                 event_add_pop_joker(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER), 30);
                 AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, 30)
@@ -1886,10 +1886,10 @@ bool automated_event_cash_out()
                 AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, 30)
                 break;
             }
-            case JOKER_TYPE_ROCKET:
+            case JOKER_TYPE_GOLDEN_JOKER:
             {
                 if (g_game_state.cash_out_jokers < 0) g_game_state.cash_out_jokers = 0;
-                g_game_state.cash_out_jokers += game_util_get_joker_param(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER));
+                g_game_state.cash_out_jokers += 4;
                 g_game_state.cash_out_value += g_game_state.cash_out_jokers;
                 event_add_pop_joker(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER), 30);
                 AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, 30)
