@@ -1010,6 +1010,11 @@ void game_draw_left_info()
         }
         case GAME_STAGE_INGAME:
         {
+            if (g_game_state.sub_stage == GAME_SUBSTAGE_INGAME_WON) {
+                y += 60;
+                break;
+            }
+
             sprintf(str, game_util_get_blind_name(g_game_state.blind));
             graphics_draw_text(font_big, str, 6, y, 1.0f, COLOR_WHITE);
             y += 12;
@@ -1159,25 +1164,35 @@ void game_draw_cash_out_panel()
     graphics_draw_quad(x, y, 250, SCREEN_HEIGHT - 100, 0, 0, 0, 0, COLOR_DARK_GREY);
     y += 16;
     if (g_game_state.cash_out_done)
-    {        
+    {
         sprintf(str, "Cash Out: $%d", g_game_state.cash_out_value);
         float str_size = (float)strlen(str) * 8.0f;
-        graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 6.0f, y - 10.0f, str_size + 12.0f, 20.0f, COLOR_WHITE);
-        graphics_draw_solid_quad((140.0f + 125.0f) - (str_size / 2.0f) - 4.0f, y - 8.0f, str_size + 8.0f, 16.0f, COLOR_TEXT_ORANGE);
-        graphics_draw_text_center(font_big, str, (140.0f + 125.0f), y, 1.0f, COLOR_WHITE);
-        y += 20;
+        graphics_draw_solid_quad((x + 125.0f) - (str_size / 2.0f) - 6.0f, y - 10.0f, str_size + 12.0f, 20.0f, COLOR_WHITE);
+        graphics_draw_solid_quad((x + 125.0f) - (str_size / 2.0f) - 4.0f, y - 8.0f, str_size + 8.0f, 16.0f, COLOR_TEXT_ORANGE);
+        graphics_draw_text_center(font_big, str, x + 125.0f, y, 1.0f, COLOR_WHITE);
     }
+    y += 20;
     if (g_game_state.cash_out_blind > -1)
     {
-        graphics_draw_text(font_small, game_util_get_blind_name(g_game_state.blind), x + 4, y, 1.0f, COLOR_WHITE);
-        y += 16;
+        struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+        int tex_blind_chips_x = 0;
+        int tex_blind_chips_y = 0;
+        tex_blind_chips_x = blind_type->u / 15;
+        tex_blind_chips_y = blind_type->v / 15;
+        graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_draw_rotated_quad(
+            x + 4, y, BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT,
+            1 + (blind_type->u  - tex_blind_chips_x * 15) * (BLIND_CHIP_WIDTH + 2),
+            1 + (blind_type->v - tex_blind_chips_y * 15) * (BLIND_CHIP_HEIGHT + 2),
+            BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT, COLOR_WHITE, 0.0f);
+
         
-        graphics_draw_text(font_small, "Score at least: ", x + 4, y, 1.0f, COLOR_WHITE);
+        graphics_draw_text(font_small, "Score at least", x + 10 + BLIND_CHIP_WIDTH, y, 1.0f, COLOR_WHITE);
         sprintf(str, "%.0f", game_get_current_blind_score());
-        graphics_draw_text(font_big, str, x + 100, y, 1.0f, COLOR_TEXT_RED);
+        graphics_draw_text(font_big, str, x + 10 + BLIND_CHIP_WIDTH, y + 14, 1.0f, COLOR_TEXT_RED);
         sprintf(str, "$%d", g_game_state.cash_out_blind);
         graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
-        y += 16;
+        y += BLIND_CHIP_HEIGHT;
 
         graphics_draw_text(font_small, "........................................", x + 4, y, 1.0f, COLOR_WHITE);
         y += 16;
@@ -1193,7 +1208,9 @@ void game_draw_cash_out_panel()
     }
     if (g_game_state.cash_out_interest > -1)
     {
-        graphics_draw_text(font_small, "Interest", x + 4, y, 1.0f, COLOR_WHITE);
+        sprintf(str, "%d", g_game_state.cash_out_interest);
+        graphics_draw_text(font_big, str, x + 4, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
+        graphics_draw_text(font_small, "1 interest per $5 (5 max)", x + 4 + 16, y, 1.0f, COLOR_WHITE);
         sprintf(str, "$%d", g_game_state.cash_out_interest);
         graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
         y += 16;
