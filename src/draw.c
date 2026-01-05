@@ -507,32 +507,32 @@ void game_draw_card(struct Card *card, struct DrawObject *draw_override)
     float h = CARD_HEIGHT * draw->scale;
     card->draw.angle = -(SCREEN_WIDTH/2-x)/2000.0f;
 
-    graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(x, y, w, h, g_enhancement_tex_coords[card->enhancement].x, g_enhancement_tex_coords[card->enhancement].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, COLOR_WHITE, card->draw.angle);
 
     if (card->enhancement != CARD_ENHANCEMENT_STONE)
     {
         if (card->rank < 7)
         {
-            graphics_set_texture(tex_deck, GRAPHICS_TEXTURE_CURRENT_FILTER);
+            graphics_set_texture(tex_deck, GRAPHICS_TEXTURE_FILTER_LINEAR);
             graphics_draw_rotated_quad(x, y, w, h, 1 + (TEXTURE_CARD_WIDTH + 2) * card->rank, 1 + (TEXTURE_CARD_HEIGHT + 2) * card->suit, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, COLOR_WHITE, card->draw.angle);
         }
         else
         {
-            graphics_set_texture(tex_deck2, GRAPHICS_TEXTURE_CURRENT_FILTER);
+            graphics_set_texture(tex_deck2, GRAPHICS_TEXTURE_FILTER_LINEAR);
             graphics_draw_rotated_quad(x, y, w, h, 1 + (TEXTURE_CARD_WIDTH + 2) * (card->rank - 7), 1 + (TEXTURE_CARD_HEIGHT + 2) * card->suit, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, COLOR_WHITE, card->draw.angle);
         }
     }
 
     if (card->edition != CARD_EDITION_BASE && card->edition != CARD_EDITION_NEGATIVE)
     {        
-        graphics_set_texture(tex_editions, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_editions, GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_rotated_quad(x, y, w, h, g_editions_tex_coords[card->edition].x, g_editions_tex_coords[card->edition].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, 0x7FFFFFFF, card->draw.angle);
     }
 
     if (card->draw.white_factor > 0.0f)
     {
-        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
         uint32_t color = 0xFFFFFF | ((uint32_t)(255.0f * (card->draw.white_factor > 1.0f ? 1.0f : card->draw.white_factor))<<24);        
         graphics_draw_rotated_quad(x, y, w, h, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, color, card->draw.angle);        
     }
@@ -562,7 +562,7 @@ void game_draw_joker(struct Joker *joker)
         sceGuAlphaFunc(GU_GREATER, 0, 0xFF);
     }
 
-    graphics_set_texture(tex_jokers[tex_joker_x][tex_joker_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_jokers[tex_joker_x][tex_joker_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(
         x, y, w, h,
         1 + (joker_type->u - tex_joker_x * 7) * (TEXTURE_CARD_WIDTH + 2),
@@ -573,7 +573,7 @@ void game_draw_joker(struct Joker *joker)
     {
         tex_joker_x = 2 / 7;
         tex_joker_y = 9 / 5;
-        graphics_set_texture(tex_jokers[tex_joker_x][tex_joker_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_jokers[tex_joker_x][tex_joker_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_rotated_quad(
             x, y, w, h,
             1 + (2 - tex_joker_x * 7) * (TEXTURE_CARD_WIDTH + 2),
@@ -590,7 +590,7 @@ void game_draw_joker(struct Joker *joker)
 
     if (joker->edition != CARD_EDITION_BASE && joker->edition != CARD_EDITION_NEGATIVE)
     {        
-        graphics_set_texture(tex_editions, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_editions, GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_rotated_quad(x, y, w, h, g_editions_tex_coords[joker->edition].x, g_editions_tex_coords[joker->edition].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, 0x7FFFFFFF, joker->draw.angle);
     }
 }
@@ -622,7 +622,7 @@ void game_draw_item_button(struct DrawObject *draw, int gamepad_ui, char *text, 
     float height = text2 != NULL ? 35.0f : 30.0f;
     graphics_set_no_texture();
     graphics_draw_quad(x, item_y + (CARD_HEIGHT / 2.0f) - 20.0f, 40.0f, height, 0, 0, 0, 0, button_color);
-    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_quad(x + 7.0f, item_y + (CARD_HEIGHT / 2.0f) - 22.0f, 18.0f, 18.0f,
         g_gamepad_ui_text_coords[gamepad_ui].x,
         g_gamepad_ui_text_coords[gamepad_ui].y,
@@ -651,7 +651,7 @@ void game_draw_tarot(struct Tarot *tarot)
     float x, y;
     game_draw_get_oscillating_position(&(tarot->draw), &x, &y);
 
-    graphics_set_texture(tex_tarots[tex_tarot_x][tex_tarot_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_tarots[tex_tarot_x][tex_tarot_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(
         x, y, CARD_WIDTH, CARD_HEIGHT,
         1 + (tarot_type->u - tex_tarot_x * 7) * (TEXTURE_CARD_WIDTH + 2),
@@ -660,7 +660,7 @@ void game_draw_tarot(struct Tarot *tarot)
     
     if (tarot->draw.white_factor > 0.0f)
     {
-        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
         uint32_t color = 0xFFFFFF | ((uint32_t)(255.0f * (tarot->draw.white_factor > 1.0f ? 1.0f : tarot->draw.white_factor))<<24);        
         graphics_draw_quad(x, y, CARD_WIDTH, CARD_HEIGHT, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, color);
     }
@@ -676,7 +676,7 @@ void game_draw_planet(struct Planet *planet)
     float x, y;
     game_draw_get_oscillating_position(&(planet->draw), &x, &y);
     
-    graphics_set_texture(tex_tarots[tex_planet_x][tex_planet_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_tarots[tex_planet_x][tex_planet_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(
         x, y, CARD_WIDTH, CARD_HEIGHT,
         1 + (planet_type->u - tex_planet_x * 7) * (TEXTURE_CARD_WIDTH + 2),
@@ -685,7 +685,7 @@ void game_draw_planet(struct Planet *planet)
     
     if (planet->draw.white_factor > 0.0f)
     {
-        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
         uint32_t color = 0xFFFFFF | ((uint32_t)(255.0f * (planet->draw.white_factor > 1.0f ? 1.0f : planet->draw.white_factor))<<24);        
         graphics_draw_quad(x, y, CARD_WIDTH, CARD_HEIGHT, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, color);
     }
@@ -700,7 +700,7 @@ void game_draw_booster(struct BoosterPack *booster)
     float x, y;
     game_draw_get_oscillating_position(&(booster->draw), &x, &y);
 
-    graphics_set_texture(tex_boosters[tex_booster_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_boosters[tex_booster_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_rotated_quad(
         x, y, BOOSTER_WIDTH, BOOSTER_HEIGHT,
         1 + (booster_type->u) * (TEXTURE_CARD_WIDTH + 2),
@@ -921,7 +921,7 @@ void game_draw_ingame_hand()
         }
         graphics_draw_quad(x, y, 78.0f, 26.0f, 0, 0, 0, 0, COLOR_LIGHT_BLUE);
         graphics_draw_text_center(font_small, "Play Hand", x + 48.0f, y + 12.0f, 1.0f, COLOR_WHITE);
-        graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_quad(x + 2.0f, y + 4.0f, 16.0f, 16.0f,
             g_gamepad_ui_text_coords[GAMEPAD_UI_SQUARE].x,
             g_gamepad_ui_text_coords[GAMEPAD_UI_SQUARE].y,
@@ -936,7 +936,7 @@ void game_draw_ingame_hand()
         }
         graphics_draw_quad(x, y, 78.0f, 26.0f, 0, 0, 0, 0, COLOR_LIGHT_RED);
         graphics_draw_text_center(font_small, "Discard", x + 30.0f, y + 12.0f, 1.0f, COLOR_WHITE);
-        graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_quad(x + 60.0f, y + 4.0f, 16.0f, 16.0f,
             g_gamepad_ui_text_coords[GAMEPAD_UI_TRIANGLE].x,
             g_gamepad_ui_text_coords[GAMEPAD_UI_TRIANGLE].y,
@@ -979,7 +979,7 @@ void game_draw_deck()
     }
 
     // Draw deck
-    graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_quad(DRAW_DECK_X, DRAW_DECK_Y, CARD_WIDTH, CARD_HEIGHT, 0, 0, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, COLOR_WHITE);    
     // Deck size
     sprintf(str, "%d/%d", g_game_state.current_deck.card_count, g_game_state.full_deck.card_count);
@@ -1028,7 +1028,7 @@ void game_draw_left_info()
             int tex_blind_chips_y = 0;
             tex_blind_chips_x = blind_type->u / 15;
             tex_blind_chips_y = blind_type->v / 15;
-            graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+            graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
             graphics_draw_rotated_quad(
                 6, y, BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT,
                 1 + (blind_type->u  - tex_blind_chips_x * 15) * (BLIND_CHIP_WIDTH + 2),
@@ -1044,7 +1044,7 @@ void game_draw_left_info()
             if (g_game_counter % 6 == 0) shop_anim++;
             if (shop_anim > 3) shop_anim = 0;
 
-            graphics_set_texture(tex_shop, GRAPHICS_TEXTURE_CURRENT_FILTER);
+            graphics_set_texture(tex_shop, GRAPHICS_TEXTURE_FILTER_LINEAR);
             graphics_draw_quad(4.0f, y - 8.0f, DRAW_LEFT_INFO_WIDTH - 4.0f, 50.0f, 113 * shop_anim, 0, 113, 57, COLOR_WHITE);
             y += 60;
             break;
@@ -1179,7 +1179,7 @@ void game_draw_cash_out_panel()
         int tex_blind_chips_y = 0;
         tex_blind_chips_x = blind_type->u / 15;
         tex_blind_chips_y = blind_type->v / 15;
-        graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_rotated_quad(
             x + 4, y, BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT,
             1 + (blind_type->u  - tex_blind_chips_x * 15) * (BLIND_CHIP_WIDTH + 2),
@@ -1540,7 +1540,7 @@ void game_draw_blind_select()
         int tex_blind_chips_y = 0;
         tex_blind_chips_x = blind_type->u / 15;
         tex_blind_chips_y = blind_type->v / 15;
-        graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_blind_chips[tex_blind_chips_x][tex_blind_chips_y], GRAPHICS_TEXTURE_FILTER_LINEAR);
         graphics_draw_rotated_quad(
             x+106/4, y, BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT,
             1 + (blind_type->u  - tex_blind_chips_x * 15) * (BLIND_CHIP_WIDTH + 2),
@@ -1700,7 +1700,7 @@ void game_draw_offscreen_deck_info()
 
             if (g_game_state.deck_info.partial && !in_current_deck)
             {
-                graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+                graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
                 graphics_draw_quad(draw->x, draw->y, CARD_WIDTH, CARD_HEIGHT, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, 0xC0FFFFFF & COLOR_DARK_GREY);
             }
 
@@ -1731,7 +1731,7 @@ void game_draw_offscreen_deck_info()
 
 //             if (g_game_state.deck_info.partial && !g_game_state.deck_info.in_current_deck[i][j])
 //             {
-//                 graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+//                 graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
 //                 graphics_draw_quad(draw->x, draw->y, CARD_WIDTH, CARD_HEIGHT, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, 0xC0FFFFFF & COLOR_DARK_GREY);
 //             }
 //         }
@@ -1756,7 +1756,7 @@ void game_draw_deck_info()
     {
         graphics_draw_text_center(font_small, "Full", left + 35.0f, top + 7.0f + 6.0f, 1.0f, COLOR_WHITE);
     }
-    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_quad(left + 4.0f + 60.0f, top + 5.0f, 18.0f, 18.0f, g_gamepad_ui_text_coords[GAMEPAD_UI_LEFT_TRIGGER].x, g_gamepad_ui_text_coords[GAMEPAD_UI_LEFT_TRIGGER].y, 32, 32, COLOR_WHITE);
 
     graphics_draw_solid_quad(left + 4.0f, top + 4.0f + 20.0f, 80.0f, 14.0f, COLOR_DARK_GREY_2);
@@ -1768,7 +1768,7 @@ void game_draw_deck_info()
     {
         graphics_draw_text_center(font_small, "Base", left + 35.0f, top + 20.0f + 4.0f + 7.0f, 1.0f, COLOR_WHITE);
     }
-    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_CURRENT_FILTER);
+    graphics_set_texture(tex_gamepad_ui, GRAPHICS_TEXTURE_FILTER_LINEAR);
     graphics_draw_quad(left + 4.0f + 60.0f, top + 5.0f + 18.0f, 18.0f, 18.0f, g_gamepad_ui_text_coords[GAMEPAD_UI_RIGHT_TRIGGER].x, g_gamepad_ui_text_coords[GAMEPAD_UI_RIGHT_TRIGGER].y, 32, 32, COLOR_WHITE);
 
     float suit_left = 60.0f;
@@ -1796,7 +1796,7 @@ void game_draw_deck_info()
     for (int i = 0; i < UI_ASSETS_COUNT - 2; i++)
     {
         graphics_draw_solid_quad(left + other_left - 2.0f, top + other_top - 2.0f + i * 28.0f, 22.0f, 22.0f, COLOR_LIGHT_GREY_2);
-        graphics_set_texture(tex_ui_assets, GRAPHICS_TEXTURE_CURRENT_FILTER);
+        graphics_set_texture(tex_ui_assets, GRAPHICS_TEXTURE_FILTER_NEAREST);
 
         int asset = i+2;
         if (asset == 5) { asset = 6; }
@@ -1823,7 +1823,7 @@ void game_draw_deck_info()
         game_draw_card(&g_game_state.deck_info.current_card, NULL);
         if (g_game_state.deck_info.partial && !g_game_state.deck_info.in_current_deck[g_game_state.deck_info.current_card_y][g_game_state.deck_info.current_card_x])
         {
-            graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_CURRENT_FILTER);
+            graphics_set_texture(tex_enhancers, GRAPHICS_TEXTURE_FILTER_LINEAR);
             graphics_draw_quad(g_game_state.deck_info.current_card.draw.x, g_game_state.deck_info.current_card.draw.y, CARD_WIDTH, CARD_HEIGHT, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].x, g_enhancement_tex_coords[CARD_ENHANCEMENT_NONE].y, TEXTURE_CARD_WIDTH, TEXTURE_CARD_HEIGHT, 0xC0FFFFFF & COLOR_DARK_GREY);
         }
         game_draw_card_frame(&(g_game_state.deck_info.current_card.draw));
