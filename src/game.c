@@ -1625,8 +1625,25 @@ void game_set_random_blinds()
 {
     g_game_state.current_blinds[0] = g_blind_types[GAME_BLIND_SMALL];
     g_game_state.current_blinds[1] = g_blind_types[GAME_BLIND_LARGE];
-    g_game_state.current_blinds[2] = g_blind_types[random_int(GAME_BLIND_LARGE + 1, GAME_BLIND_TYPE_COUNT - 1)];
+
+    int bosses[GAME_BLIND_TYPE_COUNT];
+    int count = 0;
+
+    for (int i = 0; i < GAME_BLIND_TYPE_COUNT; i++) {
+        if (g_game_state.ante % 8 == 0) {
+            if (g_blind_types[i].showdown) {
+                bosses[count++] = i;
+            }
+        } else {
+            if (g_blind_types[i].boss && !g_blind_types[i].showdown) {
+                bosses[count++] = i;
+            }
+        }
+    }
+
+    g_game_state.current_blinds[2] = g_blind_types[bosses[random_int(0, count-1)] < GAME_BLIND_TYPE_COUNT ? bosses[random_int(0, count-1)] : GAME_BLIND_LARGE];
 }
+
 void game_init_logic()
 {
     srand(time(0));
