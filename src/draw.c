@@ -1524,18 +1524,20 @@ void game_draw_blind_select()
 
         int y = 90;
 
+        struct BlindType *blind_type = &g_game_state.current_blinds[i];
+
         if (i == g_game_state.blind && g_game_state.input_focused_zone == INPUT_FOCUSED_ZONE_BLIND)
         {
             graphics_draw_quad(x - 2, y - 2, 94, SCREEN_HEIGHT - 88, 0, 0, 0, 0, COLOR_WHITE);
         }
 
+        graphics_draw_quad(x-2, y-2, 90+4, SCREEN_HEIGHT - 90 + 2, 0, 0, 0, 0, blind_type->color);
         graphics_draw_quad(x, y, 90, SCREEN_HEIGHT - 90, 0, 0, 0, 0, COLOR_DARK_GREY);
 
         y += 10;
         graphics_draw_text(font_small, game_util_get_blind_name(i), x + 2, y, 1.0f, COLOR_WHITE);
 
         y += 12;
-        struct BlindType *blind_type = &g_game_state.current_blinds[i];
         int tex_blind_chips_x = 0;
         int tex_blind_chips_y = 0;
         tex_blind_chips_x = blind_type->u / 15;
@@ -1548,6 +1550,10 @@ void game_draw_blind_select()
             BLIND_CHIP_WIDTH, BLIND_CHIP_HEIGHT, COLOR_WHITE, 0.0f);
 
         y += 40;
+        // sprintf(str, "%s", blind_type->description);
+        // graphics_draw_text(font_small, str, x + 2, y, 1.0f, COLOR_WHITE);
+
+        // y += 20;
         graphics_draw_text(font_small, "Score at least", x + 2, y, 1.0f, COLOR_WHITE);
 
         y += 10;
