@@ -662,6 +662,29 @@ bool automated_event_score()
                     AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
+            case JOKER_TYPE_8_BALL:
+                if (game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_8))
+                {
+                    if (game_util_chance_occurs(1, 4))
+                    {
+                        event_add_pop_joker(AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD), VARIABLE_TIME(30));
+                        if (game_util_has_room_in_consumables())
+                        {
+                            int excluded_tarots[100];
+                            int excluded_tarots_count = 0;
+                            for (int j = 0; j < g_game_state.consumables.item_count; j++) { if (g_game_state.consumables.items[j].type == ITEM_TYPE_TAROT) {excluded_tarots[excluded_tarots_count++] = g_game_state.consumables.items[j].tarot.type;} }
+                            int tarot_type = game_util_get_new_tarot_type(excluded_tarots, excluded_tarots_count);
+                            g_game_state.consumables.items[g_game_state.consumables.item_count].type = ITEM_TYPE_TAROT;
+                            game_init_tarot(&(g_game_state.consumables.items[g_game_state.consumables.item_count].tarot), tarot_type, CARD_EDITION_BASE);
+                            game_set_object_off_screen(&(g_game_state.consumables.items[g_game_state.consumables.item_count].tarot.draw));
+                            g_game_state.consumables.item_count++;
+                            event_add(EVENT_ARRANGE_CARDS, 0, EVENT_CARD_LOCATION_CONSUMABLES, 0, 0, 0, 10);
+                        }
+                        AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, VARIABLE_TIME(30))
+                        // TODO: add text "+1 Tarot" to joker
+                    }
+                }
+                break;
             case JOKER_TYPE_FIBONACCI:
                 if (game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_ACE) ||
                     game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_2) ||

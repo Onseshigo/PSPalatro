@@ -69,7 +69,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_MYSTIC_SUMMIT    ,"Mystic Summit",         5, JOKER_RARITY_COMMON,   true , 2, 2, { "#2+15#- Mult when", "#50#- discards remaining", "", "", "", ""}},
     { JOKER_TYPE_MARBLE_JOKER     ,"Marble Joker",          6, JOKER_RARITY_UNCOMMON, true , 3, 2, { "Adds one #5Stone#- card", "to the deck when", "#5Blind#- is selected", "", "", ""}},
     { JOKER_TYPE_LOYALTY_CARD     ,"Loyalty Card",          5, JOKER_RARITY_UNCOMMON, false, 4, 2, { "#c#1x4#- Mult every", "#56#- hands played", "", "#j remaining", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_8_BALL           ,"8 Ball",                5, JOKER_RARITY_COMMON,   false, 0, 5, { "#41 in 4#- chance for each", "played #58#- to create", "a #6Tarot#- card when scored", "", "", ""}}, // NOT IMPLEMENTED
+    { JOKER_TYPE_8_BALL           ,"8 Ball",                5, JOKER_RARITY_COMMON,   true , 0, 5, { "#41 in 4#- chance for each", "played #58#- to create", "a #6Tarot#- card when scored", "", "", ""}},
     { JOKER_TYPE_MISPRINT         ,"Misprint",              4, JOKER_RARITY_COMMON,   true , 6, 2, { "#2+0-23#- Mult", "", "", "", "", ""}},
     { JOKER_TYPE_DUSK             ,"Dusk",                  5, JOKER_RARITY_UNCOMMON, true , 4, 7, { "Retrigger all played", "cards in #5final#-", "#5hand#- of the round", "", "", ""}},
     { JOKER_TYPE_RAISED_FIST      ,"Raised Fist",           5, JOKER_RARITY_COMMON,   true , 8, 2, { "Adds #5double#- the rank", "of #5lowest#- ranked", "card held in hand", "to Mult", "", ""}},
@@ -79,7 +79,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_SCARY_FACE       ,"Scary Face",            4, JOKER_RARITY_COMMON,   true , 2, 3, { "Played #5face#- cards give", " #3+30#- Chips when scored", "", "", "", ""}},
     { JOKER_TYPE_ABSTRACT_JOKER   ,"Abstract Joker",        4, JOKER_RARITY_COMMON,   true , 3, 3, { "#2+3#- Mult for each", "Joker card", "(Currently #2+#j#- Mult)", "", "", ""}},
     { JOKER_TYPE_DELAYED_GRAT     ,"Delayed Gratification", 4, JOKER_RARITY_COMMON,   false, 4, 3, { "Earn #5$2#- per #5discard#-", "if no discards are used", "by end of the round", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_HACK             ,"Hack",                  6, JOKER_RARITY_UNCOMMON, true,  5, 2, { "Retrigger each played", "#52#-, #53#-, #54#-, or #55#-", "", "", "", ""}},
+    { JOKER_TYPE_HACK             ,"Hack",                  6, JOKER_RARITY_UNCOMMON, true , 5, 2, { "Retrigger each played", "#52#-, #53#-, #54#-, or #55#-", "", "", "", ""}},
     { JOKER_TYPE_PAREIDOLIA       ,"Pareidolia",            5, JOKER_RARITY_UNCOMMON, true , 6, 3, { "All cards are considered", "#5face#- cards", "", "", "", ""}},
     { JOKER_TYPE_GROS_MICHEL      ,"Gros Michel",           5, JOKER_RARITY_COMMON,   true , 7, 6, { "#2+15#- Mult", "#41 in 6#- chance this", "is destroyed at", "the end of round.", "", ""}},
     { JOKER_TYPE_EVEN_STEVEN      ,"Even Steven",           4, JOKER_RARITY_COMMON,   true , 8, 3, { "Played cards with", "#5even#- rank give", "#2+4#- Mult when scored", "", "", ""}},
@@ -87,7 +87,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_SCHOLAR          ,"Scholar",               4, JOKER_RARITY_COMMON,   true , 0, 4, { "Played #5Aces#- give", "#3+20#- Chips and", "#2+4#- Mult when scored", "", "", ""}},
     { JOKER_TYPE_BUSINESS_CARD    ,"Business Card",         4, JOKER_RARITY_COMMON,   true , 1, 4, { "Played #5face#- cards have", " a #41 in 2#- chance", "to give #5$2#- when scored", "", "", ""}},
     { JOKER_TYPE_SUPERNOVA        ,"Supernova",             5, JOKER_RARITY_COMMON,   true , 2, 4, { "Adds the number of times", "#5poker hand#- has been", "played this run to Mult", "", "", ""}},
-    { JOKER_TYPE_RIDE_THE_BUS     ,"Ride The Bus",          6, JOKER_RARITY_COMMON,   true,  1, 6, { "This Joker gains", "#2+1#- Mult per #5consecutive#-", "hand played without", "a scoring #5face#- card", "(Currently #2+#j#- Mult)", ""}},
+    { JOKER_TYPE_RIDE_THE_BUS     ,"Ride The Bus",          6, JOKER_RARITY_COMMON,   true , 1, 6, { "This Joker gains", "#2+1#- Mult per #5consecutive#-", "hand played without", "a scoring #5face#- card", "(Currently #2+#j#- Mult)", ""}},
     { JOKER_TYPE_SPACE_JOKER      ,"Space Joker",           5, JOKER_RARITY_UNCOMMON, true , 3, 5, { "#41 in 4#- chance to", "upgrade level of", "played #5poker hand#-", "", "", ""}},
     { JOKER_TYPE_EGG              ,"Egg",                   4, JOKER_RARITY_COMMON,   false, 0, 10,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_BURGLAR          ,"Burglar",               6, JOKER_RARITY_UNCOMMON, true , 1, 10,{ "When #5Blind#- is selected,", " gain #3+3#- Hands and", "lose #5all discards#-", "", "", ""}},
@@ -96,10 +96,10 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_ICE_CREAM        ,"Ice Cream",             5, JOKER_RARITY_COMMON,   true , 4, 10,{ "#3+#j#- Chips", "#3-5#- Chips for", "every hand played", "", "", ""}},
     { JOKER_TYPE_DNA              ,"DNA",                   8, JOKER_RARITY_RARE,     true , 5, 10,{ "If #5first hand#- of round has", "only #51#- card, add a", "permanent copy to deck", "and draw it to #5hand#-", "", ""}},
     { JOKER_TYPE_SPLASH           ,"Splash",                3, JOKER_RARITY_COMMON,   true , 6, 10,{ "Every #5played card#-", "counts in scoring", "", "", "", ""}},
-    { JOKER_TYPE_BLUE_JOKER       ,"Blue Joker",            5, JOKER_RARITY_COMMON,   true,  7, 10,{ "#3+2#- Chips for each", "remaining card in #5deck#-", "", "(Currently #3+#j#- Chips)", "", ""}},
+    { JOKER_TYPE_BLUE_JOKER       ,"Blue Joker",            5, JOKER_RARITY_COMMON,   true , 7, 10,{ "#3+2#- Chips for each", "remaining card in #5deck#-", "", "(Currently #3+#j#- Chips)", "", ""}},
     { JOKER_TYPE_SIXTH_SENSE      ,"Sixth Sense",           6, JOKER_RARITY_UNCOMMON, false, 8, 10,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_CONSTELLATION    ,"Constellation",         6, JOKER_RARITY_UNCOMMON, false, 9, 10,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_HIKER            ,"Hiker",                 5, JOKER_RARITY_UNCOMMON, true,  0, 11,{ "Every played #5card#-", "permanently gains", "#2+5#- Chips when scored", "", "", ""}},
+    { JOKER_TYPE_HIKER            ,"Hiker",                 5, JOKER_RARITY_UNCOMMON, true , 0, 11,{ "Every played #5card#-", "permanently gains", "#2+5#- Chips when scored", "", "", ""}},
     { JOKER_TYPE_FACELESS_JOKER   ,"Faceless Joker",        4, JOKER_RARITY_COMMON,   true , 1, 11,{ "Earn #5$5#- if #53#- or more", "#5face cards#- are", "discarded at", "the same time", "", ""}},
     { JOKER_TYPE_GREEN_JOKER      ,"Green Joker",           4, JOKER_RARITY_COMMON,   true , 2, 11,{ "#2+1#- Mult per hand played", "#2-1#- Mult per discard", "(Currently #2+#j#- Mult)", "", "", ""}},
     { JOKER_TYPE_SUPERPOSITION    ,"Superposition",         4, JOKER_RARITY_COMMON,   true , 3, 11,{ "Create a #6Tarot#- card", "if poker hand contains", "an #5Ace#- and a #5Straight#-", "", "", ""}},
@@ -133,7 +133,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_JUGGLER          ,"Juggler",               4, JOKER_RARITY_COMMON,   true , 0,  1,{ "#5+1#- hand size", "", "", "", "", ""}},
     { JOKER_TYPE_DRUNKARD         ,"Drunkard",              4, JOKER_RARITY_COMMON,   true , 1,  1,{ "#2+1#- discard", "each round", "", "", "", ""}},
     { JOKER_TYPE_STONE_JOKER      ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_GOLDEN_JOKER     ,"Golden Joker",          6, JOKER_RARITY_COMMON,   true,  9,  2,{ "Earn #5$4#-", "at end of round", "", "", "", ""}},
+    { JOKER_TYPE_GOLDEN_JOKER     ,"Golden Joker",          6, JOKER_RARITY_COMMON,   true , 9,  2,{ "Earn #5$4#-", "at end of round", "", "", "", ""}},
     { JOKER_TYPE_LUCKY_CAT        ,"Lucky Cat",             6, JOKER_RARITY_UNCOMMON, false, 5, 14,{ "This Joker gains", "#c#1x0.25#- Mult every time", "a #5Lucky#- card", "#4successfully#- triggers", "(Currently #c#1x#j#- Mult)", ""}},
     { JOKER_TYPE_BASEBALL_CARD    ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_BULL             ,"Bull",                  6, JOKER_RARITY_UNCOMMON, true , 7, 14,{ "#3+2#- Chips for each", "#5$1#- you have", "(Currently #3+#j#- Chips)", "", "", ""}},
@@ -147,14 +147,14 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_WALKIE_TALKIE    ,"Walkie Talkie",         4, JOKER_RARITY_COMMON,   true , 8, 15,{ "Each played #510#- or #54#-", "gives #3+10#- Chips and", "#2+4#- Mult when scored", "", "", ""}},
     { JOKER_TYPE_SELTZER          ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_CASTLE           ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_SMILEY_FACE      ,"Smiley Face",           4, JOKER_RARITY_COMMON,   true,  6, 15,{ "Played #5face#- cards", "give #2+5#- Mult", "when scored", "", "", ""}},
+    { JOKER_TYPE_SMILEY_FACE      ,"Smiley Face",           4, JOKER_RARITY_COMMON,   true , 6, 15,{ "Played #5face#- cards", "give #2+5#- Mult", "when scored", "", "", ""}},
     { JOKER_TYPE_CAMPFIRE         ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_GOLDEN_TICKET    ,"Golden Ticket",         5, JOKER_RARITY_COMMON,   false, 5,  3,{ "Played #5Gold#- cards", "earn #5$4#- when scored", "", "", "", ""}},
     { JOKER_TYPE_MR_BONES         ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_ACROBAT          ,"Acrobat",               6, JOKER_RARITY_UNCOMMON, true,  2,  1,{ "#1#cx3#- Mult on", "#5final hand#-", "of round", "", "", ""}},
-    { JOKER_TYPE_SOCK_AND_BUSKIN  ,"Sock and Buskin",       6, JOKER_RARITY_UNCOMMON, true,  3,  1,{ "Retrigger all played", "#5face#- cards", "", "", "", ""}},
-    { JOKER_TYPE_SWASHBUCKLER     ,"Swashbuckler",          4, JOKER_RARITY_COMMON,   true,  9,  5,{ "Adds the sell value", "of all other owned", "#5Jokers#- to Mult", "", "(Currently #2+#j#- Mult)", ""}},
-    { JOKER_TYPE_TROUBADOUR       ,"Troubadour",            6, JOKER_RARITY_UNCOMMON, true,  0,  2,{ "#5+2#- hand size,", "#3-1#- hand per round", "", "", "", ""}},
+    { JOKER_TYPE_ACROBAT          ,"Acrobat",               6, JOKER_RARITY_UNCOMMON, true , 2,  1,{ "#1#cx3#- Mult on", "#5final hand#-", "of round", "", "", ""}},
+    { JOKER_TYPE_SOCK_AND_BUSKIN  ,"Sock and Buskin",       6, JOKER_RARITY_UNCOMMON, true , 3,  1,{ "Retrigger all played", "#5face#- cards", "", "", "", ""}},
+    { JOKER_TYPE_SWASHBUCKLER     ,"Swashbuckler",          4, JOKER_RARITY_COMMON,   true , 9,  5,{ "Adds the sell value", "of all other owned", "#5Jokers#- to Mult", "", "(Currently #2+#j#- Mult)", ""}},
+    { JOKER_TYPE_TROUBADOUR       ,"Troubadour",            6, JOKER_RARITY_UNCOMMON, true , 0,  2,{ "#5+2#- hand size,", "#3-1#- hand per round", "", "", "", ""}},
     { JOKER_TYPE_CERTIFICATE      ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_SMEARED_JOKER    ,"Smeared Joker",         7, JOKER_RARITY_UNCOMMON, true , 4,  6,{ "#5Hearts#- and #5Diamonds#-", "count as the same suit,", "#5Spades#- and #5Clubs#-", "count as the same suit", "", ""}},
     { JOKER_TYPE_THROWBACK        ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
@@ -174,14 +174,14 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_SEEING_DOUBLE    ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_MATADOR          ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_HIT_THE_ROAD     ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_THE_DUO          ,"The Duo",               8, JOKER_RARITY_RARE,     true,  5,  4,{ "#1#cx2#- Mult if played", "hand contains a #5Pair#-", "", "", "", ""}},
-    { JOKER_TYPE_THE_TRIO         ,"The Trio",              8, JOKER_RARITY_RARE,     true,  6,  4,{ "#1#cx3#- Mult if played", "hand contains a", "#5Three of a Kind#-", "", "", ""}},
-    { JOKER_TYPE_THE_FAMILY       ,"The Family",            8, JOKER_RARITY_RARE,     true,  7,  4,{ "#1#cx4#- Mult if played", "hand contains a", "#5Four of a Kind#-", "", "", ""}},
-    { JOKER_TYPE_THE_ORDER        ,"The Order",             8, JOKER_RARITY_RARE,     true,  8,  4,{ "#1#cx3#- Mult if played", "hand contains a", "#5Straight#-", "", "", ""}},
-    { JOKER_TYPE_THE_TRIBE        ,"The Tribe",             8, JOKER_RARITY_RARE,     true,  9,  4,{ "#1#cx2#- Mult if played", "hand contains a", "#5Flush#-", "", "", ""}},
-    { JOKER_TYPE_STUNTMAN         ,"Stuntman",              7, JOKER_RARITY_RARE,     true,  8,  6,{ "#3+250#- Chips,", "#5-2#- hand size", "", "", "", ""}},
+    { JOKER_TYPE_THE_DUO          ,"The Duo",               8, JOKER_RARITY_RARE,     true , 5,  4,{ "#1#cx2#- Mult if played", "hand contains a #5Pair#-", "", "", "", ""}},
+    { JOKER_TYPE_THE_TRIO         ,"The Trio",              8, JOKER_RARITY_RARE,     true , 6,  4,{ "#1#cx3#- Mult if played", "hand contains a", "#5Three of a Kind#-", "", "", ""}},
+    { JOKER_TYPE_THE_FAMILY       ,"The Family",            8, JOKER_RARITY_RARE,     true , 7,  4,{ "#1#cx4#- Mult if played", "hand contains a", "#5Four of a Kind#-", "", "", ""}},
+    { JOKER_TYPE_THE_ORDER        ,"The Order",             8, JOKER_RARITY_RARE,     true , 8,  4,{ "#1#cx3#- Mult if played", "hand contains a", "#5Straight#-", "", "", ""}},
+    { JOKER_TYPE_THE_TRIBE        ,"The Tribe",             8, JOKER_RARITY_RARE,     true , 9,  4,{ "#1#cx2#- Mult if played", "hand contains a", "#5Flush#-", "", "", ""}},
+    { JOKER_TYPE_STUNTMAN         ,"Stuntman",              7, JOKER_RARITY_RARE,     true , 8,  6,{ "#3+250#- Chips,", "#5-2#- hand size", "", "", "", ""}},
     { JOKER_TYPE_INVISIBLE_JOKER  ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
-    { JOKER_TYPE_BRAINSTORM       ,"Brainstorm",           10, JOKER_RARITY_RARE,     true,  7,  7,{ "Copies the ability", "of leftmost #5Joker#-", "", "", "", ""}},
+    { JOKER_TYPE_BRAINSTORM       ,"Brainstorm",           10, JOKER_RARITY_RARE,     true , 7,  7,{ "Copies the ability", "of leftmost #5Joker#-", "", "", "", ""}},
     { JOKER_TYPE_SATELLITE        ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_SHOOT_THE_MOON   ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_DRIVERS_LICENSE  ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
