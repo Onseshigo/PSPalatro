@@ -1172,7 +1172,7 @@ void game_draw_cash_out_panel()
         graphics_draw_text_center(font_big, str, x + 125.0f, y, 1.0f, COLOR_WHITE);
     }
     y += 20;
-    if (g_game_state.cash_out_blind > -1)
+    if (g_game_state.cash_out_blind > 0)
     {
         struct BlindType *blind_type = &g_game_state.current_blinds[g_game_state.blind];
         int tex_blind_chips_x = 0;
@@ -1206,7 +1206,7 @@ void game_draw_cash_out_panel()
         graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
         y += 16;
     }
-    if (g_game_state.cash_out_interest > -1)
+    if (g_game_state.cash_out_interest > 0)
     {
         sprintf(str, "%d", g_game_state.cash_out_interest);
         graphics_draw_text(font_big, str, x + 4, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
@@ -1215,7 +1215,7 @@ void game_draw_cash_out_panel()
         graphics_draw_text(font_small, str, x + 200, y, 1.0f, COLOR_SCORE_NUMBER_TEXT_MONEY);
         y += 16;
     }
-    if (g_game_state.cash_out_jokers > -1)
+    if (g_game_state.cash_out_jokers > 0)
     {
         graphics_draw_text(font_small, "Jokers", x + 4, y, 1.0f, COLOR_WHITE);
         sprintf(str, "$%d", g_game_state.cash_out_jokers);

@@ -711,6 +711,7 @@ struct GameState
     bool cash_out_done;
 
     int hands_played_in_round;
+    int discards_used_in_round;
 
     struct
     {

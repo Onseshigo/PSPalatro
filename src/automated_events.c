@@ -1867,6 +1867,16 @@ bool automated_event_cash_out()
 
         switch (game_util_get_joker_type(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER)))
         {
+            case JOKER_TYPE_DELAYED_GRAT:
+            {
+                if (g_game_state.discards_used_in_round != 0) break;
+                if (g_game_state.cash_out_jokers < 0) g_game_state.cash_out_jokers = 0;
+                g_game_state.cash_out_jokers += 2 * game_util_get_discards();
+                g_game_state.cash_out_value += g_game_state.cash_out_jokers;
+                event_add_pop_joker(AUTO_EVENT_VAL(CASHOUT_PARAM_JOKER_COUNTER), 30);
+                AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, 30)
+                break;
+            }
             case JOKER_TYPE_ROCKET:
             {
                 if (g_game_state.cash_out_jokers < 0) g_game_state.cash_out_jokers = 0;

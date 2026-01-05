@@ -78,7 +78,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_STEEL_JOKER      ,"Steel Joker",           7, JOKER_RARITY_UNCOMMON, false, 7, 2, { "Gives #c#1x0.2#- Mult for each", "#5Steel Card#- in your", "#5full deck#-", "(Currently #c#1x#j#- Mult)", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_SCARY_FACE       ,"Scary Face",            4, JOKER_RARITY_COMMON,   true , 2, 3, { "Played #5face#- cards give", " #3+30#- Chips when scored", "", "", "", ""}},
     { JOKER_TYPE_ABSTRACT_JOKER   ,"Abstract Joker",        4, JOKER_RARITY_COMMON,   true , 3, 3, { "#2+3#- Mult for each", "Joker card", "(Currently #2+#j#- Mult)", "", "", ""}},
-    { JOKER_TYPE_DELAYED_GRAT     ,"Delayed Gratification", 4, JOKER_RARITY_COMMON,   false, 4, 3, { "Earn #5$2#- per #5discard#-", "if no discards are used", "by end of the round", "", "", ""}}, // NOT IMPLEMENTED
+    { JOKER_TYPE_DELAYED_GRAT     ,"Delayed Gratification", 4, JOKER_RARITY_COMMON,   true , 4, 3, { "Earn #5$2#- per #5discard#-", "if no discards are used", "by end of the round", "", "", ""}},
     { JOKER_TYPE_HACK             ,"Hack",                  6, JOKER_RARITY_UNCOMMON, true , 5, 2, { "Retrigger each played", "#52#-, #53#-, #54#-, or #55#-", "", "", "", ""}},
     { JOKER_TYPE_PAREIDOLIA       ,"Pareidolia",            5, JOKER_RARITY_UNCOMMON, true , 6, 3, { "All cards are considered", "#5face#- cards", "", "", "", ""}},
     { JOKER_TYPE_GROS_MICHEL      ,"Gros Michel",           5, JOKER_RARITY_COMMON,   true , 7, 6, { "#2+15#- Mult", "#41 in 6#- chance this", "is destroyed at", "the end of round.", "", ""}},
@@ -1009,6 +1009,8 @@ void game_discard_selected_cards()
 {
     if (g_game_state.selected_cards_count > 0 && g_game_state.current_discards > 0)
     {
+        g_game_state.discards_used_in_round++;
+
         g_game_state.current_poker_hand = GAME_POKER_HAND_NONE;
         g_game_state.current_base_chips = 0;
         g_game_state.current_base_mult = 0;
@@ -1450,14 +1452,15 @@ void game_start_ingame()
     g_game_state.current_base_mult = 0;
     g_game_state.show_highlighted_card = true;
     g_game_state.cash_out_value = 0;
-    g_game_state.cash_out_blind = -1;
-    g_game_state.cash_out_hands = -1;
-    g_game_state.cash_out_interest = -1;
-    g_game_state.cash_out_jokers = -1;
+    g_game_state.cash_out_blind = 0;
+    g_game_state.cash_out_hands = 0;
+    g_game_state.cash_out_interest = 0;
+    g_game_state.cash_out_jokers = 0;
     g_game_state.cash_out_done = false;
     g_game_state.round++;
 
     g_game_state.hands_played_in_round = 0;
+    g_game_state.discards_used_in_round = 0;
 
     g_game_state.score_number.show_score_number = false;
     g_game_state.cash_out_panel_y = SCREEN_HEIGHT;
