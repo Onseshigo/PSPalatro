@@ -1552,7 +1552,7 @@ void game_draw_blind_select()
         graphics_draw_text(font_small, "Score at least", x + 2, y, 1.0f, COLOR_WHITE);
 
         y += 10;
-        sprintf(str, "%g", game_get_ante_base_score() * (1.0 + ((double)i * 0.5)));
+        sprintf(str, "%g", game_get_current_blind_score());
         graphics_draw_text(font_small, str, x + 2, y, 1.0f, COLOR_LIGHT_RED);
 
         if (i != g_game_state.blind)
