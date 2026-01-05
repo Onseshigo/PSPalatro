@@ -3,3 +3,9 @@
 *.SFO
 *.elf
 *.o
+*.zip
+*.exe
+editions.png
+settings.ini
+balatro
+.vscode
