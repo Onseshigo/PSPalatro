@@ -1808,7 +1808,7 @@ bool automated_event_cash_out()
 
     AUTO_EVENT_STAGE() // Blind money
     {
-        struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+        struct BlindType *blind_type = &g_game_state.current_blinds[g_game_state.blind];
         g_game_state.cash_out_blind = blind_type->cash_out_blind;
         g_game_state.cash_out_value += g_game_state.cash_out_blind;
     }

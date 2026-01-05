@@ -548,7 +548,7 @@ extern char *g_poker_hand_names[GAME_POKER_HAND_COUNT];
 #define GAME_BLIND_WATER            17
 #define GAME_BLIND_EYE              18
 #define GAME_BLIND_PLANT            19
-#define GAME_BLIND_NEELDE           20
+#define GAME_BLIND_NEEDLE           20
 #define GAME_BLIND_HEAD             21
 #define GAME_BLIND_VERDANT_LEAF     22
 #define GAME_BLIND_VIOLET_VESSEL    23
@@ -598,7 +598,7 @@ extern struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT];
 enum ItemLocation
 {
     ITEM_LOCATION_TOP,
-    ITEM_LOCATION_CONSUMIBLE,
+    ITEM_LOCATION_CONSUMABLE,
     ITEM_LOCATION_HAND,
     ITEM_LOCATION_SHOP_SINGLES
 };
@@ -687,6 +687,7 @@ struct GameState
     // ingame
     double score;
     int current_hands, current_discards;
+    struct BlindType current_blinds[3];
     int stage, sub_stage;
     int previous_stage, previous_sub_stage;
     int selected_cards_count;
@@ -819,6 +820,7 @@ bool game_util_played_hand_contains_straight();
 bool game_util_played_hand_contains_flush();
 bool game_util_played_hand_contains_scoring_face();
 char *game_util_get_blind_name(int blind);
+double game_util_get_blind_score(int blind);
 bool game_util_is_joker_slot_available();
 bool game_util_is_consumable_slot_available();
 int game_util_get_joker_buy_price(struct Joker *joker);

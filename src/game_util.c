@@ -426,8 +426,16 @@ bool game_util_played_hand_contains_scoring_face()
 
 char *game_util_get_blind_name(int blind)
 {
-    struct BlindType *blind_type = &g_blind_types[blind];
+    struct BlindType *blind_type = &g_game_state.current_blinds[blind];
     return (char *)blind_type->name;
+}
+
+double game_util_get_blind_score(int blind)
+{
+    double score = game_get_ante_base_score();
+    struct BlindType *blind_type = &g_game_state.current_blinds[blind];
+
+    return score * blind_type->mult;
 }
 
 bool game_util_is_joker_slot_available()

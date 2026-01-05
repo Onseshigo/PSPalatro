@@ -1023,7 +1023,7 @@ void game_draw_left_info()
             sprintf(str, "%g", game_get_current_blind_score());
             graphics_draw_text(font_big, str, BLIND_CHIP_WIDTH * 1.5f + 6, y + BLIND_CHIP_HEIGHT / 2 - 6, 1.0f, COLOR_SCORE_NUMBER_TEXT_ADD_MULT);
 
-            struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+            struct BlindType *blind_type = &g_game_state.current_blinds[g_game_state.blind];
             int tex_blind_chips_x = 0;
             int tex_blind_chips_y = 0;
             tex_blind_chips_x = blind_type->u / 15;
@@ -1174,7 +1174,7 @@ void game_draw_cash_out_panel()
     y += 20;
     if (g_game_state.cash_out_blind > -1)
     {
-        struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+        struct BlindType *blind_type = &g_game_state.current_blinds[g_game_state.blind];
         int tex_blind_chips_x = 0;
         int tex_blind_chips_y = 0;
         tex_blind_chips_x = blind_type->u / 15;
@@ -1518,7 +1518,6 @@ void game_draw_blind_select()
     game_draw_deck();
 
     int x = 106;
-// TODO: change
     for(int i = 0; i < 3; i++)
     {
         graphics_set_no_texture();
@@ -1536,7 +1535,7 @@ void game_draw_blind_select()
         graphics_draw_text(font_small, game_util_get_blind_name(i), x + 2, y, 1.0f, COLOR_WHITE);
 
         y += 12;
-        struct BlindType *blind_type = &g_blind_types[i];
+        struct BlindType *blind_type = &g_game_state.current_blinds[i];
         int tex_blind_chips_x = 0;
         int tex_blind_chips_y = 0;
         tex_blind_chips_x = blind_type->u / 15;
@@ -1552,7 +1551,7 @@ void game_draw_blind_select()
         graphics_draw_text(font_small, "Score at least", x + 2, y, 1.0f, COLOR_WHITE);
 
         y += 10;
-        sprintf(str, "%g", game_get_current_blind_score());
+        sprintf(str, "%g", game_util_get_blind_score(i));
         graphics_draw_text(font_small, str, x + 2, y, 1.0f, COLOR_LIGHT_RED);
 
         if (i != g_game_state.blind)

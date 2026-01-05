@@ -154,7 +154,7 @@ struct JokerType g_joker_types[JOKER_TYPE_COUNT] = {
     { JOKER_TYPE_ACROBAT          ,"Acrobat",               6, JOKER_RARITY_UNCOMMON, true,  2,  1,{ "#1#cx3#- Mult on", "#5final hand#-", "of round", "", "", ""}},
     { JOKER_TYPE_SOCK_AND_BUSKIN  ,"Sock and Buskin",       6, JOKER_RARITY_UNCOMMON, true,  3,  1,{ "Retrigger all played", "#5face#- cards", "", "", "", ""}},
     { JOKER_TYPE_SWASHBUCKLER     ,"Swashbuckler",          4, JOKER_RARITY_COMMON,   true,  9,  5,{ "Adds the sell value", "of all other owned", "#5Jokers#- to Mult", "", "(Currently #2+#j#- Mult)", ""}},
-    { JOKER_TYPE_TROUBADOUR       ,"Troubador",             6, JOKER_RARITY_UNCOMMON, true,  0,  2,{ "#5+2#- hand size,", "#3-1#- hand per round", "", "", "", ""}},
+    { JOKER_TYPE_TROUBADOUR       ,"Troubadour",            6, JOKER_RARITY_UNCOMMON, true,  0,  2,{ "#5+2#- hand size,", "#3-1#- hand per round", "", "", "", ""}},
     { JOKER_TYPE_CERTIFICATE      ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
     { JOKER_TYPE_SMEARED_JOKER    ,"Smeared Joker",         7, JOKER_RARITY_UNCOMMON, true , 4,  6,{ "#5Hearts#- and #5Diamonds#-", "count as the same suit,", "#5Spades#- and #5Clubs#-", "count as the same suit", "", ""}},
     { JOKER_TYPE_THROWBACK        ,"name",                  5, JOKER_RARITY_UNCOMMON, false, 1, 13,{ "test", "test", "test", "", "", ""}}, // NOT IMPLEMENTED
@@ -349,7 +349,7 @@ struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT] = {
     { GAME_BLIND_CLUB,          "The Club",         "All Club cards are debuffed",                      5, 2.0f, true,  false,  1,  10, 0xFF92CBB9, 0, 4  },   // NOT IMPLEMENTED
     { GAME_BLIND_MANACLE,       "The Manacle",      "-1 Hand Size",                                     5, 2.0f, true,  false,  1,  10, 0xFF575757, 0, 8  },   // NOT IMPLEMENTED
     { GAME_BLIND_TOOTH,         "The Tooth",        "Lose $1 per card played",                          5, 2.0f, true,  false,  3,  10, 0xFF2D2DB5, 0, 22 },   // NOT IMPLEMENTED
-    { GAME_BLIND_WALL,          "The Wall",         "Extra large blind",                                5, 4.0f, true,  false,  2,  10, 0xFFA5598A, 0, 9  },   // NOT IMPLEMENTED
+    { GAME_BLIND_WALL,          "The Wall",         "Extra large blind",                                5, 4.0f, true,  false,  2,  10, 0xFFA5598A, 0, 9  },
     { GAME_BLIND_HOUSE,         "The House",        "First hand is drawn face down",                    5, 2.0f, true,  false,  2,  10, 0xFFA88651, 0, 3  },   // NOT IMPLEMENTED
     { GAME_BLIND_MARK,          "The Mark",         "All face cards are drawn face down",               5, 2.0f, true,  false,  2,  10, 0xFF47386A, 0, 23 },   // NOT IMPLEMENTED
     { GAME_BLIND_CERULEAN_BELL, "Cerulean Bell",    "Forces 1 card to always be selected",              8, 2.0f, true,  true,  10,  10, 0xFFFD9C00, 0, 26 },   // NOT IMPLEMENTED
@@ -360,10 +360,10 @@ struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT] = {
     { GAME_BLIND_WATER,         "The Water",        "Start with 0 discards",                            5, 2.0f, true,  false,  2,  10, 0xFFEBE0C6, 0, 14 },   // NOT IMPLEMENTED
     { GAME_BLIND_EYE,           "The Eye",          "No repeat hand types this round",                  5, 2.0f, true,  false,  3,  10, 0xFFE4714B, 0, 17 },   // NOT IMPLEMENTED
     { GAME_BLIND_PLANT,         "The Plant",        "All face cards are debuffed",                      5, 2.0f, true,  false,  4,  10, 0xFF849270, 0, 19 },   // NOT IMPLEMENTED
-    { GAME_BLIND_NEELDE,        "The Needle",       "Play only 1 hand",                                 5, 1.0f, true,  false,  2,  10, 0xFF316E5C, 0, 20 },   // NOT IMPLEMENTED
+    { GAME_BLIND_NEEDLE,        "The Needle",       "Play only 1 hand",                                 5, 1.0f, true,  false,  2,  10, 0xFF316E5C, 0, 20 },   // NOT IMPLEMENTED
     { GAME_BLIND_HEAD,          "The Head",         "All Heart cards are debuffed",                     5, 2.0f, true,  false,  1,  10, 0xFFB49DAC, 0, 21 },   // NOT IMPLEMENTED
     { GAME_BLIND_VERDANT_LEAF,  "Verdant Leaf",     "All cards debuffed until 1 Joker sold",            8, 2.0f, true,  true,   10, 10, 0xFF86A756, 0, 28 },   // NOT IMPLEMENTED
-    { GAME_BLIND_VIOLET_VESSEL, "Violet Vessel",    "Very large blind",                                 8, 6.0f, true,  true,   10, 10, 0xFFE1718A, 0, 29 },   // NOT IMPLEMENTED
+    { GAME_BLIND_VIOLET_VESSEL, "Violet Vessel",    "Very large blind",                                 8, 6.0f, true,  true,   10, 10, 0xFFE1718A, 0, 29 },
     { GAME_BLIND_WINDOW,        "The Window",       "All Diamond cards are debuffed",                   5, 2.0f, true,  false,  1,  10, 0xFF95A2A9, 0, 6  },   // NOT IMPLEMENTED
     { GAME_BLIND_SERPENT,       "The Serpent",      "After Play or Discard, always draw 3 cards",       5, 2.0f, true,  false,  5,  10, 0xFF4F9A43, 0, 15 },   // NOT IMPLEMENTED
     { GAME_BLIND_PILLAR,        "The Pillar",       "Cards played previously this Ante are debuffed",   5, 2.0f, true,  false,  1,  10, 0xFF52677E, 0, 16 },   // NOT IMPLEMENTED
@@ -497,7 +497,7 @@ void game_init_joker(struct Joker *joker)
 double game_get_current_blind_score()
 {
     double score = game_get_ante_base_score();
-    struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+    struct BlindType *blind_type = &g_game_state.current_blinds[g_game_state.blind];
 
     return score * blind_type->mult;
 }
@@ -1621,6 +1621,12 @@ bool game_init_load_file_values()
     return true;
 }
 
+void game_set_random_blinds()
+{
+    g_game_state.current_blinds[0] = g_blind_types[GAME_BLIND_SMALL];
+    g_game_state.current_blinds[1] = g_blind_types[GAME_BLIND_LARGE];
+    g_game_state.current_blinds[2] = g_blind_types[random_int(GAME_BLIND_LARGE + 1, GAME_BLIND_TYPE_COUNT - 1)];
+}
 void game_init_logic()
 {
     srand(time(0));
@@ -1746,6 +1752,8 @@ void game_init_logic()
     // TEMP
     // game_start_ingame();
 
+    game_set_random_blinds();
+
     // Initialize stats
     g_game_state.stats.cards_played = 0;
     g_game_state.stats.cards_discarded = 0;
@@ -1776,7 +1784,6 @@ void game_increment_played_poker_hand(int poker_hand)
     }
 }
 
-// TODO: change
 void game_go_to_next_blind()
 {
     g_game_state.stage = GAME_STAGE_BLINDS;
@@ -1785,6 +1792,7 @@ void game_go_to_next_blind()
     if (g_game_state.blind > GAME_BLIND_LARGE+1)
     {
         g_game_state.blind = GAME_BLIND_SMALL;
+        game_set_random_blinds();
         g_game_state.ante++;
     }
 }
