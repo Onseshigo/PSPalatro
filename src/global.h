@@ -530,8 +530,35 @@ extern char *g_poker_hand_names[GAME_POKER_HAND_COUNT];
 
 #define GAME_BLIND_SMALL            0
 #define GAME_BLIND_LARGE            1
-#define GAME_BLIND_BOSS             2
-#define GAME_BLIND_TYPE_COUNT       3
+#define GAME_BLIND_OX               2
+#define GAME_BLIND_HOOK             3
+#define GAME_BLIND_MOUTH            4
+#define GAME_BLIND_FISH             5
+#define GAME_BLIND_CLUB             6
+#define GAME_BLIND_MANACLE          7
+#define GAME_BLIND_TOOTH            8
+#define GAME_BLIND_WALL             9
+#define GAME_BLIND_HOUSE            10
+#define GAME_BLIND_MARK             11
+#define GAME_BLIND_CERULEAN_BELL    12
+#define GAME_BLIND_WHEEL            13
+#define GAME_BLIND_ARM              14
+#define GAME_BLIND_PSYCHIC          15
+#define GAME_BLIND_GOAD             16
+#define GAME_BLIND_WATER            17
+#define GAME_BLIND_EYE              18
+#define GAME_BLIND_PLANT            19
+#define GAME_BLIND_NEELDE           20
+#define GAME_BLIND_HEAD             21
+#define GAME_BLIND_VERDANT_LEAF     22
+#define GAME_BLIND_VIOLET_VESSEL    23
+#define GAME_BLIND_WINDOW           24
+#define GAME_BLIND_SERPENT          25
+#define GAME_BLIND_PILLAR           26
+#define GAME_BLIND_FLINT            27
+#define GAME_BLIND_AMBER_ACORN      28
+#define GAME_BLIND_CRIMSON_HEART    29
+#define GAME_BLIND_TYPE_COUNT       30
 
 struct Blind
 {
@@ -545,8 +572,14 @@ struct BlindType
 {
     int type;
     const char *name;
-    int u, v;
+    const char *description;
     int cash_out_blind;
+    float mult;
+    bool boss;
+    bool showdown;
+    int min, max;
+    uint32_t color;
+    int u, v;
 };
 
 extern struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT];

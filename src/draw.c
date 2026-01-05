@@ -1518,6 +1518,7 @@ void game_draw_blind_select()
     game_draw_deck();
 
     int x = 106;
+// TODO: change
     for(int i = 0; i < 3; i++)
     {
         graphics_set_no_texture();

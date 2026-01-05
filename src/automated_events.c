@@ -1553,7 +1553,7 @@ bool automated_event_score()
             }
             case JOKER_TYPE_ROCKET:
             {
-                if (g_game_state.blind == GAME_BLIND_BOSS)
+                if (g_game_state.blind > GAME_BLIND_LARGE)
                 {
                     game_util_set_joker_param(AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), game_util_get_joker_param(AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER)) + 2);
                     event_add_pop_joker(AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), SCORE_TIMESPAN);
@@ -1578,7 +1578,7 @@ bool automated_event_score()
         g_game_state.stats.max_score = MAX(g_game_state.stats.max_score, g_game_state.score);
         if (g_game_state.score >= game_get_current_blind_score())
         {
-            if (g_game_state.ante == 8 && g_game_state.blind == GAME_BLIND_BOSS)
+            if (g_game_state.ante == 8 && g_game_state.blind > GAME_BLIND_LARGE)
             {
                 game_go_to_stage(GAME_STAGE_INGAME, GAME_SUBSTAGE_INGAME_WON_END);
             }
