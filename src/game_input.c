@@ -46,10 +46,10 @@ void game_input_update_joker(bool no_input)
                 else
                 {
                     g_game_state.highlighted_item--;
-                }                
+                }
             }
         }
-        
+
         if (input_was_button_pressed(INPUT_BUTTON_CROSS))
         {
             g_game_state.cross_pressed = true;
@@ -101,7 +101,7 @@ void game_input_update_consumables(bool no_input)
     if (!no_input)
     {
         if (input_was_button_pressed(INPUT_BUTTON_RIGHT))
-        {        
+        {
             if (g_game_state.highlighted_item < g_game_state.consumables.item_count - 1)
             {
                 if (input_is_button_down(INPUT_BUTTON_CROSS))
@@ -113,7 +113,7 @@ void game_input_update_consumables(bool no_input)
                 else
                 {
                     g_game_state.highlighted_item++;
-                }                
+                }
             }
         }
         else if (input_was_button_pressed(INPUT_BUTTON_LEFT))
@@ -129,7 +129,7 @@ void game_input_update_consumables(bool no_input)
                 else
                 {
                     g_game_state.highlighted_item--;
-                }                
+                }
             }
             else
             {
@@ -140,9 +140,9 @@ void game_input_update_consumables(bool no_input)
                 }
             }
         }
-        
+
         if (input_was_button_pressed(INPUT_BUTTON_CROSS))
-        {                 
+        {
             g_game_state.cross_pressed = true;
         }
 
@@ -186,7 +186,7 @@ void game_input_update_hand(bool no_input)
         g_game_state.show_highlighted_card = true;
 
         if (input_was_button_pressed(INPUT_BUTTON_RIGHT))
-        {        
+        {
             if (g_game_state.highlighted_item < g_game_state.hand.card_count - 1)
             {
                 if (input_is_button_down(INPUT_BUTTON_CROSS))
@@ -199,7 +199,7 @@ void game_input_update_hand(bool no_input)
                 {
                     g_game_state.highlighted_item++;
                 }
-                
+
                 event_add_interpolate_value(&(g_game_state.hand.cards[g_game_state.highlighted_item]->draw.white_factor), 1.0f, 0.0f, 20);
             }
             else
@@ -208,7 +208,7 @@ void game_input_update_hand(bool no_input)
             }
         }
         else if (input_was_button_pressed(INPUT_BUTTON_LEFT))
-        {        
+        {
             if (g_game_state.highlighted_item > 0)
             {
                 if (input_is_button_down(INPUT_BUTTON_CROSS))
@@ -221,7 +221,7 @@ void game_input_update_hand(bool no_input)
                 {
                     g_game_state.highlighted_item--;
                 }
-                                
+
                 event_add_interpolate_value(&(g_game_state.hand.cards[g_game_state.highlighted_item]->draw.white_factor), 1.0f, 0.0f, 20);
             }
             else
@@ -240,7 +240,7 @@ void game_input_update_hand(bool no_input)
             g_game_state.cross_pressed = false;
             if (!g_game_state.moving_card)
             {
-                if (g_game_state.hand.cards[g_game_state.highlighted_item]->selected || 
+                if (g_game_state.hand.cards[g_game_state.highlighted_item]->selected ||
                     (!g_game_state.hand.cards[g_game_state.highlighted_item]->selected && g_game_state.selected_cards_count < 5))
                 {
                     g_game_state.hand.cards[g_game_state.highlighted_item]->selected = !g_game_state.hand.cards[g_game_state.highlighted_item]->selected;
@@ -308,7 +308,7 @@ void game_input_update_hand(bool no_input)
             }
         }
         else if (input_was_button_released(INPUT_BUTTON_CIRCLE))
-        {            
+        {
             for (int i = 0; i < g_game_state.hand.card_count; i++)
             {
                 g_game_state.hand.cards[i]->selected = false;
@@ -551,7 +551,7 @@ void game_input_update_shop_singles(bool no_input)
             }
         }
         else if (input_was_button_pressed(INPUT_BUTTON_RIGHT))
-        {        
+        {
             if (g_game_state.highlighted_item < g_game_state.shop.total_items - 1)
             {
                 do
@@ -619,7 +619,7 @@ void game_input_update_shop_boosters(bool no_input)
             }
         }
         else if (input_was_button_pressed(INPUT_BUTTON_RIGHT))
-        {        
+        {
             if (g_game_state.highlighted_item < g_game_state.shop.total_boosters - 1)
             {
                 int last_hightlighted_item = g_game_state.highlighted_item;
@@ -819,7 +819,7 @@ void game_input_update_deck(bool no_input)
     if (no_input) return;
 
     if (input_was_button_pressed(INPUT_BUTTON_CROSS))
-    {        
+    {
         game_go_to_stage(g_game_state.stage, GAME_SUBSTAGE_DECK_INFO);
     }
 
@@ -950,7 +950,7 @@ void game_input_update_deck_info_card(bool no_input)
                 return;
             }
         } while (g_game_state.deck_info.card_count[g_game_state.deck_info.current_card_y] == 0);
-        
+
         if (y != g_game_state.deck_info.current_card_y)
         {
             g_game_state.deck_info.current_card_x = MIN(g_game_state.deck_info.current_card_x, g_game_state.deck_info.card_count[g_game_state.deck_info.current_card_y] - 1);

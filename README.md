@@ -16,16 +16,16 @@ The project is for <ins>legitimate owners of a copy of **Balatro**</ins> who wis
 #### This is a non-profit fan project solely aimed to recreate a minimal version of Balatro on the PlayStation Portable as a tribute to the full Balatro and is not intended to infringe or draw sales away from the full game's release or any of the established works by <ins>Playstack and LocalThunk</ins>.
 #### <ins>All rights are reserved to their respective holders.</ins>
 
-#### You <ins>MUST</ins> own the original game in order to use this software, namely the <ins>Windows</ins> version (it hasn't been tested with any other version).  
+#### You <ins>MUST</ins> own the original game in order to use this software, namely the <ins>Windows</ins> version (it hasn't been tested with any other version).
 
 ### <ins>Buy the official full version from these sources below:</ins>
 
 [![Balatro on Steam](https://custom-icon-badges.demolab.com/badge/Balatro%20on%20Steam-194c84?logo=steam&logoColor=fff)](https://store.steampowered.com/app/2379780/Balatro/)
 [![Balatro on Humble Bundle](https://img.shields.io/badge/Balatro%20on%20Humble%20Bundle-%23494F5C.svg?logo=HumbleBundle&logoColor=white)](https://www.humblebundle.com/store/balatro?srsltid=AfmBOoqS2De8T4kizzWxJS1pbvQosJ_bYCl4qvC6LA1YLPAh4sZ8vJqO)
 
-## <ins>Original Description:</ins> 
- 
-I did this for fun in whatever free time I managed to get.  
+## <ins>Original Description:</ins>
+
+I did this for fun in whatever free time I managed to get.
 <ins>There is **no** roadmap and **no** plans for future updates, they may come or not, I will try to fix bugs whenever I can.</ins>
 Not all implemented rules match the original game exactly, some of them I couldn't find information on (i.e. the probabilities of certain events).
 

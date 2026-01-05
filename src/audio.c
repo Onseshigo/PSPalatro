@@ -7,7 +7,7 @@
 
 struct audio_buffer_data
 {
-    char data[AUDIO_BUFFER_SIZE];    
+    char data[AUDIO_BUFFER_SIZE];
 };
 
 struct audio_buffer
@@ -38,7 +38,7 @@ struct OggFile
 } g_ogg_files[MAX_OGG_FILES];
 
 void audio_callback(void* buf, unsigned int length, void *userdata)
-{    
+{
     if (g_audio_buffer.ogg_id > -1)
     {
         if (g_audio_buffer.written > 0)
@@ -201,7 +201,7 @@ int audio_load_ogg(char *filename)
     fclose(fp_ogg);
 
     ov_callbacks callbacks;
-    
+
     g_ogg_files[0].cur_ptr = g_ogg_files[0].file_ptr;
     g_ogg_files[0].file_size = fsize;
     g_ogg_files[0].in_use = true;
@@ -213,7 +213,7 @@ int audio_load_ogg(char *filename)
 
     ov_open_callbacks((void *)&(g_ogg_files[0]), &(g_ogg_files[0].vorbis_file), NULL, -1, callbacks);
 
-#ifdef DEBUG    
+#ifdef DEBUG
     {
         DEBUG_PRINTF("Ogg file \"%s\" loaded.\n", filename);
 
@@ -238,7 +238,7 @@ int audio_load_ogg_from_archive(char *filename)
     g_ogg_files[0].file_ptr = (char *)archive_load_file_entry(filename, &file_size);
 
     ov_callbacks callbacks;
-    
+
     g_ogg_files[0].cur_ptr = g_ogg_files[0].file_ptr;
     g_ogg_files[0].file_size = file_size;
     g_ogg_files[0].in_use = true;
@@ -250,7 +250,7 @@ int audio_load_ogg_from_archive(char *filename)
 
     ov_open_callbacks((void *)&(g_ogg_files[0]), &(g_ogg_files[0].vorbis_file), NULL, -1, callbacks);
 
-#ifdef DEBUG    
+#ifdef DEBUG
     {
         DEBUG_PRINTF("Ogg file \"%s\" loaded.\n", filename);
 

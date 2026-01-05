@@ -29,13 +29,13 @@ bool init_more_stuff()
         game_draw_loading_text("Setting CPU clock to 333Mhz", COLOR_WHITE, COLOR_BLACK);
         scePowerSetClockFrequency(333, 333, 166);
     }
-    
+
     if (!archive_open(g_settings.archive_file_name)) return false;
 
-    game_init_logic();    
+    game_init_logic();
 
     if (!game_init_draw()) return false;
-    
+
     if (g_settings.audio)
     {
         game_draw_loading_text("Loading audio file", COLOR_WHITE, COLOR_BLACK);
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
         audio_destroy_ogg(ogg_id);
     }
 
-    audio_end();    
+    audio_end();
 
     sceGuTerm();
 	sceKernelExitGame();

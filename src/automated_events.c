@@ -95,7 +95,7 @@ void automated_event_inc_stage()
 }
 
 void automated_event_set_stage(int stage)
-{    
+{
     g_automated_event->frame_count = -1;
     g_automated_event->stage = stage;
 }
@@ -131,7 +131,7 @@ bool g_automated_event_leave = false;
         { \
             g_automated_event_leave = false; \
             break; \
-        }        
+        }
 
 #define AUTO_EVENT_NAMED_STAGE(name) \
     g_automated_event->frame_count = 0; \
@@ -308,7 +308,7 @@ bool automated_event_add_score()
         if (AUTO_EVENT_VAL(ADD_SCORE_PARAM_MONEY) > 0)
         {
             if (AUTO_EVENT_VAL(SCORE_PARAM_RELATED_JOKER_INDEX) >= 0)
-            {                
+            {
                 event_add_pop_item(aux_automated_event_get_card_draw(AUTO_EVENT_VAL(SCORE_PARAM_RELATED_JOKER_INDEX), EVENT_CARD_LOCATION_JOKER), VARIABLE_TIME(SCORE_TIMESPAN));
             }
             g_game_state.wealth += AUTO_EVENT_VAL(ADD_SCORE_PARAM_MONEY);
@@ -360,14 +360,14 @@ void automated_event_score_init_jokers()
 bool automated_event_score()
 {
     AUTO_EVENT_START()
-    
+
     AUTO_EVENT_STAGE() // Move cards to played area
     {
         g_current_speedup = powf(SPEEDUP_STEP, (float)(g_settings.speed - 1));
         g_current_speedup = MAX(g_current_speedup, SPEEDUP_MIN);
         g_score_count = 0;
         g_freeze_cards = true;
-        
+
         // Init jokers
         automated_event_score_init_jokers();
 
@@ -573,7 +573,7 @@ bool automated_event_score()
     AUTO_EVENT_NAMED_STAGE(SCORE_ADD_CHIPS) // Add chips
     {
         g_automated_event->params[SCORE_PARAM_CURRENT_SCORING_CARD] = get_scoring_card_index(g_automated_event->params[SCORE_PARAM_SCORING_CARD_COUNTER]);
-                
+
         uint32_t chips = game_util_get_card_chips(g_game_state.played_hand.cards[g_automated_event->params[SCORE_PARAM_CURRENT_SCORING_CARD]]);
 
         AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, chips, 0, 0, 0, g_automated_event->params[SCORE_PARAM_CURRENT_SCORING_CARD], EVENT_CARD_LOCATION_PLAYED, -1)
@@ -635,31 +635,31 @@ bool automated_event_score()
     }
 
     AUTO_EVENT_NAMED_STAGE(SCORE_CARD_JOKER) // Joker per card
-    {        
+    {
         switch (game_util_get_joker_type(AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)))
         {
             case JOKER_TYPE_GREEDY_JOKER:
                 if (game_util_is_card_suit(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_SUIT_DIAMONDS))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_LUSTY_JOKER:
                 if (game_util_is_card_suit(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_SUIT_HEARTS))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_WRATHFUL_JOKER:
                 if (game_util_is_card_suit(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_SUIT_SPADES))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_GLUTTONOUS_JOKER:
                 if (game_util_is_card_suit(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_SUIT_CLUBS))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 3, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_FIBONACCI:
@@ -669,13 +669,13 @@ bool automated_event_score()
                     game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_5) ||
                     game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_8))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 8, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 8, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_SCARY_FACE:
                 if (game_util_is_card_face(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)]))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 30, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 30, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_EVEN_STEVEN:
@@ -685,7 +685,7 @@ bool automated_event_score()
                     game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_8) ||
                     game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_10))
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 4, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 4, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_ODD_TODD:
@@ -706,18 +706,18 @@ bool automated_event_score()
                 break;
             case JOKER_TYPE_BUSINESS_CARD:
                 if (game_util_is_card_face(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)]) & game_util_chance_occurs(1, 2))
-                {                    
+                {
                     AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 0, 0, 2, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_HACK:
                 {
                     struct Card *card = g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)];
-                    struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);                    
+                    struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);
                     if (game_util_is_card_rank(card, CARD_RANK_2) ||
                         game_util_is_card_rank(card, CARD_RANK_3) ||
                         game_util_is_card_rank(card, CARD_RANK_4) ||
-                        game_util_is_card_rank(card, CARD_RANK_5))                        
+                        game_util_is_card_rank(card, CARD_RANK_5))
                     {
                         if (joker->repeat > 0)
                         {
@@ -732,7 +732,7 @@ bool automated_event_score()
                 break;
             case JOKER_TYPE_DUSK:
                 {
-                    struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);                    
+                    struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);
                     if (g_game_state.current_hands == 0)
                     {
                         if (joker->repeat > 0)
@@ -767,7 +767,7 @@ bool automated_event_score()
                 struct Card *card = g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)];
                 struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);
                 if (game_util_is_card_face(card))
-                {                    
+                {
                     if (joker->repeat > 0)
                     {
                         joker->repeat--;
@@ -783,7 +783,7 @@ bool automated_event_score()
             {
                 struct Joker *joker = &(g_game_state.jokers.jokers[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD)]);
                 if (game_util_get_index_first_scoring_card() == AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD))
-                {                    
+                {
                     if (joker->repeat > 0)
                     {
                         joker->repeat--;
@@ -797,13 +797,13 @@ bool automated_event_score()
             }
             case JOKER_TYPE_WALKIE_TALKIE:
                 if (game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_10) ||
-                    game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_4)) 
+                    game_util_is_card_rank(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)], CARD_RANK_4))
                 {
                     AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 10, 4, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
                 break;
             case JOKER_TYPE_SMILEY_FACE:
-                if (game_util_is_card_face(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)])) 
+                if (game_util_is_card_face(g_game_state.played_hand.cards[AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD)]))
                 {
                     AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 5, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_SCORING_CARD), EVENT_CARD_LOCATION_PLAYED, AUTO_EVENT_VAL(SCORE_PARAM_CURRENT_JOKER_FOR_CARD))
                 }
@@ -854,7 +854,7 @@ bool automated_event_score()
     }
 
     AUTO_EVENT_NAMED_STAGE(SCORE_CARD_NEXT_JOKER)
-    {        
+    {
         g_automated_event->params[SCORE_PARAM_CURRENT_JOKER_FOR_CARD]++;
         if (g_automated_event->params[SCORE_PARAM_CURRENT_JOKER_FOR_CARD] < g_game_state.jokers.joker_count)
         {
@@ -889,7 +889,7 @@ bool automated_event_score()
     AUTO_EVENT_NAMED_STAGE(SCORE_HAND) // Score hand cards
     {
         if (g_automated_event->params[SCORE_PARAM_HAND_CARD_COUNTER] == g_game_state.hand.card_count)
-        {            
+        {
             g_automated_event->params[SCORE_PARAM_FINAL_JOKER_COUNTER] = 0;
             AUTO_EVENT_GO_TO_STAGE(SCORE_JOKERS)
         }
@@ -899,7 +899,7 @@ bool automated_event_score()
         if (g_game_state.hand.cards[g_automated_event->params[SCORE_PARAM_HAND_CARD_COUNTER]]->enhancement == CARD_ENHANCEMENT_STEEL)
         {
             AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 0, 150, 0, AUTO_EVENT_VAL(SCORE_PARAM_HAND_CARD_COUNTER), EVENT_CARD_LOCATION_HAND, -1)
-            g_automated_event->params[SCORE_PARAM_HAND_CARD_HAS_SCORED] = 1;            
+            g_automated_event->params[SCORE_PARAM_HAND_CARD_HAS_SCORED] = 1;
         }
     }
 
@@ -920,9 +920,9 @@ bool automated_event_score()
                     joker->repeat--;
                     event_add_pop_joker(g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], VARIABLE_TIME(SCORE_TIMESPAN));
                     event_add_shake_item(&(g_game_state.hand.cards[g_automated_event->params[SCORE_PARAM_HAND_CARD_COUNTER]]->draw), VARIABLE_TIME(SCORE_TIMESPAN));
-                    event_add_show_number_joker(0.0, g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], SCORE_NUMBER_AGAIN, VARIABLE_TIME(SCORE_TIMESPAN));                    
+                    event_add_show_number_joker(0.0, g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], SCORE_NUMBER_AGAIN, VARIABLE_TIME(SCORE_TIMESPAN));
                     g_automated_event->params[SCORE_PARAM_HAND_CARD_REPEAT]++;
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, VARIABLE_TIME(SCORE_TIMESPAN))                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_WAIT, 1, VARIABLE_TIME(SCORE_TIMESPAN))
                 }
                 break;
             }
@@ -938,7 +938,7 @@ bool automated_event_score()
     }
 
     AUTO_EVENT_NAMED_STAGE(SCORE_HAND_CARD_NEXT_JOKER) // Move to next Joker for each card in hand
-    {        
+    {
         g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER]++;
         AUTO_EVENT_GO_TO_STAGE(SCORE_HAND_CARD_JOKER)
     }
@@ -947,7 +947,7 @@ bool automated_event_score()
     {
         g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER] = 0;
         if (g_automated_event->params[SCORE_PARAM_HAND_CARD_REPEAT] > 0)
-        {            
+        {
             g_automated_event->params[SCORE_PARAM_HAND_CARD_REPEAT]--;
             AUTO_EVENT_GO_TO_STAGE(SCORE_HAND)
         }
@@ -988,25 +988,25 @@ bool automated_event_score()
             case JOKER_TYPE_JOLLY_JOKER:
                 if (game_util_played_hand_contains_pair())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 8, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 8, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_ZANY_JOKER:
                 if (game_util_played_hand_contains_three_of_a_kind())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 12, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 12, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_MAD_JOKER:
                 if(game_util_played_hand_contains_two_pair())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 10, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 10, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_CRAZY_JOKER:
                 if(game_util_played_hand_contains_straight())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 12, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 12, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_DROLL_JOKER:
@@ -1018,37 +1018,37 @@ bool automated_event_score()
             case JOKER_TYPE_SLY_JOKER:
                 if(game_util_played_hand_contains_pair())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 50, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 50, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_WILY_JOKER:
                 if(game_util_played_hand_contains_three_of_a_kind())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 100, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 100, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_CLEVER_JOKER:
                 if(game_util_played_hand_contains_two_pair())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 80, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 80, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_DEVIOUS_JOKER:
                 if(game_util_played_hand_contains_straight())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 100, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 100, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_CRAFTY_JOKER:
                 if(game_util_played_hand_contains_flush())
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 80, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 80, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_HALF_JOKER:
                 if(g_game_state.played_hand.card_count <= 3)
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 20, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 20, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             case JOKER_TYPE_JOKER_STENCIL:
@@ -1062,10 +1062,10 @@ bool automated_event_score()
                 break;
             }
             case JOKER_TYPE_BANNER:
-            {                
+            {
                 if (g_game_state.current_discards > 0)
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 30 * g_game_state.current_discards, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 30 * g_game_state.current_discards, 0, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             }
@@ -1073,7 +1073,7 @@ bool automated_event_score()
             {
                 if (g_game_state.current_discards == 0)
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 15, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 15, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             }
@@ -1082,7 +1082,7 @@ bool automated_event_score()
                 int mult = game_util_rand(0, 23);
                 if (mult > 0)
                 {
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, mult, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, mult, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             }
@@ -1094,7 +1094,7 @@ bool automated_event_score()
                     int mult = (rank + 2) * 2;
                     if (rank == CARD_RANK_ACE) mult = 11 * 2;
                     if (rank >= CARD_RANK_JACK && rank <= CARD_RANK_KING) mult = 10 * 2;
-                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, mult, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)                    
+                    AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, mult, 0, 0, AUTO_EVENT_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                 }
                 break;
             }
@@ -1288,8 +1288,8 @@ bool automated_event_score()
 
     AUTO_EVENT_NAMED_STAGE(SCORE_NEXT_JOKER) // Go to next Joker
     {
-        g_automated_event->params[SCORE_PARAM_FINAL_JOKER_COUNTER]++;        
-        AUTO_EVENT_GO_TO_STAGE(SCORE_JOKERS)        
+        g_automated_event->params[SCORE_PARAM_FINAL_JOKER_COUNTER]++;
+        AUTO_EVENT_GO_TO_STAGE(SCORE_JOKERS)
     }
 
     // ***************************************
@@ -1335,9 +1335,9 @@ bool automated_event_score()
             {
                 joker->repeat--;
                 if (joker->repeat >= 0 && g_automated_event->params[SCORE_PARAM_HAND_CARD_HAS_SCORED] == 1)
-                {                    
+                {
                     event_add_pop_joker(g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], VARIABLE_TIME(SCORE_TIMESPAN));
-                    event_add_show_number_joker(0.0, g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], SCORE_NUMBER_AGAIN, VARIABLE_TIME(SCORE_TIMESPAN));                    
+                    event_add_show_number_joker(0.0, g_automated_event->params[SCORE_PARAM_HAND_JOKER_COUNTER], SCORE_NUMBER_AGAIN, VARIABLE_TIME(SCORE_TIMESPAN));
                     g_automated_event->params[SCORE_PARAM_HAND_CARD_REPEAT] = 1;
                     break;
                 }
@@ -1469,7 +1469,7 @@ bool automated_event_score()
     AUTO_EVENT_STAGE() // Go to next Joker
     {
         g_automated_event->params[SCORE_PARAM_FINAL_JOKER_COUNTER]++;
-        AUTO_EVENT_GO_TO_STAGE(SCORE_END_PLAYED_HAND_JOKERS)        
+        AUTO_EVENT_GO_TO_STAGE(SCORE_END_PLAYED_HAND_JOKERS)
     }
 
     AUTO_EVENT_NAMED_STAGE(SCORE_CHECK_IF_END_ROUND)
@@ -1477,10 +1477,10 @@ bool automated_event_score()
         g_game_state.hands_played_in_round++;
         AUTO_EVENT_SET_VAL(SCORE_PARAM_FINAL_JOKER_COUNTER, 0)
         if (g_game_state.current_hands > 0 && g_game_state.score < game_get_current_blind_score())
-        {        
+        {
             if (game_util_get_hand_size() - g_game_state.hand.card_count > 0)
             {
-                AUTO_EVENT_EXIT_AND_CALL(AUTOMATED_EVENT_DRAW, 1, game_util_get_hand_size() - g_game_state.hand.card_count);            
+                AUTO_EVENT_EXIT_AND_CALL(AUTOMATED_EVENT_DRAW, 1, game_util_get_hand_size() - g_game_state.hand.card_count);
             }
             else
             {
@@ -1577,7 +1577,7 @@ bool automated_event_score()
         game_util_shuffle_deck(&g_game_state.current_deck);
         g_game_state.stats.max_score = MAX(g_game_state.stats.max_score, g_game_state.score);
         if (g_game_state.score >= game_get_current_blind_score())
-        {            
+        {
             if (g_game_state.ante == 8 && g_game_state.blind == GAME_BLIND_BOSS)
             {
                 game_go_to_stage(GAME_STAGE_INGAME, GAME_SUBSTAGE_INGAME_WON_END);
@@ -1640,12 +1640,12 @@ bool automated_event_discard()
                     {
                         face_count++;
                         if (face_count == 3)
-                        {                            
+                        {
                             AUTO_EVENT_CALL(AUTOMATED_EVENT_ADD_SCORE, 7, 0, 0, 0, 5, AUTO_EVENT_VAL(DISCARD_PARAM_JOKER_COUNTER), EVENT_CARD_LOCATION_JOKER, -1)
                             break;
                         }
                     }
-                }                
+                }
                 break;
             }
             default:
@@ -1685,7 +1685,7 @@ bool automated_event_discard()
             g_game_state.highlighted_item = 0;
             if (cards_to_draw > 0 && g_game_state.current_deck.card_count > 0)
             {
-                automated_event_set(AUTOMATED_EVENT_DRAW, 1, cards_to_draw <= g_game_state.current_deck.card_count ? cards_to_draw : g_game_state.current_deck.card_count );                
+                automated_event_set(AUTOMATED_EVENT_DRAW, 1, cards_to_draw <= g_game_state.current_deck.card_count ? cards_to_draw : g_game_state.current_deck.card_count );
                 g_automated_event->frame_count = -1;
                 return true;
             }
@@ -1722,7 +1722,7 @@ bool automated_event_discard()
 bool automated_event_hand_card_swap()
 {
     AUTO_EVENT_START()
-    
+
     AUTO_EVENT_STAGE()
     {
         switch(g_automated_event->params[2])
@@ -1738,7 +1738,7 @@ bool automated_event_hand_card_swap()
             {
                 struct Joker temp_joker = g_game_state.jokers.jokers[g_automated_event->params[1]];
                 g_game_state.jokers.jokers[g_automated_event->params[1]] = g_game_state.jokers.jokers[g_automated_event->params[0]];
-                g_game_state.jokers.jokers[g_automated_event->params[0]] = temp_joker;                
+                g_game_state.jokers.jokers[g_automated_event->params[0]] = temp_joker;
                 break;
             }
             case EVENT_CARD_LOCATION_CONSUMABLES:
@@ -1805,7 +1805,7 @@ bool automated_event_cash_out()
     }
 
     AUTO_EVENT_STAGE_WAIT(20)
-    
+
     AUTO_EVENT_STAGE() // Blind money
     {
         struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
@@ -1830,7 +1830,7 @@ bool automated_event_cash_out()
         g_game_state.cash_out_interest = value_to_consider / 5;
         g_game_state.cash_out_value += g_game_state.cash_out_interest;
 
-        AUTO_EVENT_SET_VAL(CASHOUT_PARAM_JOKER_COUNTER, 0)        
+        AUTO_EVENT_SET_VAL(CASHOUT_PARAM_JOKER_COUNTER, 0)
     }
 
     AUTO_EVENT_STAGE_WAIT(CASHOUT_LINE_TIMESPAN)
@@ -1907,7 +1907,7 @@ bool automated_event_sort_hand()
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
-    
+
     AUTO_EVENT_END()
 
     return true;
@@ -1927,7 +1927,7 @@ bool automated_event_buy_joker()
         {
             game_add_joker(&(g_game_state.shop.items[g_game_state.highlighted_item].info.joker));
             g_game_state.shop.items[g_game_state.highlighted_item].available = false;
-            g_game_state.shop.item_count--;            
+            g_game_state.shop.item_count--;
         }
         else if (AUTO_EVENT_VAL(0) == INPUT_FOCUSED_ZONE_BOOSTER_ITEMS)
         {
@@ -1944,7 +1944,7 @@ bool automated_event_buy_joker()
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
-    
+
     AUTO_EVENT_STAGE()
     {
         if (AUTO_EVENT_VAL(0) == INPUT_FOCUSED_ZONE_SHOP_SINGLES)
@@ -1986,7 +1986,7 @@ bool automated_event_buy_consumable()
 
     AUTO_EVENT_STAGE()
     {
-        g_game_state.input_focused_zone = -1;        
+        g_game_state.input_focused_zone = -1;
 
         g_game_state.consumables.items[g_game_state.consumables.item_count].type = g_game_state.shop.items[g_game_state.highlighted_item].type;
         g_game_state.consumables.items[g_game_state.consumables.item_count].planet = g_game_state.shop.items[g_game_state.highlighted_item].info.planet;
@@ -2003,7 +2003,7 @@ bool automated_event_buy_consumable()
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
-    
+
     AUTO_EVENT_STAGE()
     {
         if (g_game_state.shop.item_count > 0)
@@ -2028,7 +2028,7 @@ bool automated_event_sell_joker()
 
     AUTO_EVENT_STAGE()
     {
-        g_game_state.input_focused_zone = -1;       
+        g_game_state.input_focused_zone = -1;
 
         g_game_state.wealth += game_util_get_joker_sell_price(&(g_game_state.jokers.jokers[g_game_state.highlighted_item]));
 
@@ -2049,7 +2049,7 @@ bool automated_event_sell_joker()
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
-    
+
     AUTO_EVENT_STAGE()
     {
         // TODO: it should go to another focused zone if there are no jokers
@@ -2074,7 +2074,7 @@ bool automated_event_sell_consumable()
 
     AUTO_EVENT_STAGE()
     {
-        g_game_state.input_focused_zone = -1;       
+        g_game_state.input_focused_zone = -1;
 
         switch (g_game_state.consumables.items[g_game_state.highlighted_item].type)
         {
@@ -2096,7 +2096,7 @@ bool automated_event_sell_consumable()
         {
             g_game_state.consumables.items[j - 1] = g_game_state.consumables.items[j];
         }
-        g_game_state.consumables.item_count--;        
+        g_game_state.consumables.item_count--;
 
         g_game_state.highlighted_item--;
         if (g_game_state.highlighted_item < 0) g_game_state.highlighted_item = 0;
@@ -2107,7 +2107,7 @@ bool automated_event_sell_consumable()
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
-    
+
     AUTO_EVENT_STAGE()
     {
         // TODO: it should go to another focused zone if there are no jokers
@@ -2204,7 +2204,7 @@ bool automated_event_use_planet()
                 {
                     g_game_state.consumables.items[j - 1] = g_game_state.consumables.items[j];
                 }
-                g_game_state.consumables.item_count--;        
+                g_game_state.consumables.item_count--;
 
                 g_game_state.highlighted_item--;
                 if (g_game_state.highlighted_item < 0) g_game_state.highlighted_item = 0;
@@ -2222,7 +2222,7 @@ bool automated_event_use_planet()
             }
             case INPUT_FOCUSED_ZONE_BOOSTER_ITEMS:
             {
-                g_game_state.shop.booster_items[g_game_state.highlighted_item].available = false;            
+                g_game_state.shop.booster_items[g_game_state.highlighted_item].available = false;
                 g_game_state.shop.booster_item_count--;
                 break;
             }
@@ -2230,7 +2230,7 @@ bool automated_event_use_planet()
             {
                 break;
             }
-        }        
+        }
     }
 
     AUTO_EVENT_STAGE_WAIT(10)
@@ -2352,7 +2352,7 @@ bool automated_event_use_tarot()
                 break;
             }
             case TAROT_TYPE_EMPRESS:
-            {                
+            {
                 for (int i = 0; i < g_game_state.hand.card_count; i++)
                 {
                     if (g_game_state.hand.cards[i]->selected)
@@ -2717,7 +2717,7 @@ bool automated_event_use_tarot()
                 {
                     g_game_state.consumables.items[j - 1] = g_game_state.consumables.items[j];
                 }
-                g_game_state.consumables.item_count--;        
+                g_game_state.consumables.item_count--;
 
                 g_game_state.highlighted_item--;
                 if (g_game_state.highlighted_item < 0) g_game_state.highlighted_item = 0;
@@ -2740,7 +2740,7 @@ bool automated_event_use_tarot()
                 break;
             }
             default:
-            {        
+            {
                 break;
             }
         }
@@ -2771,7 +2771,7 @@ bool automated_event_use_tarot()
                         g_game_state.consumables.items[g_game_state.consumables.item_count].type = ITEM_TYPE_TAROT;
                         game_init_tarot(&(g_game_state.consumables.items[g_game_state.consumables.item_count].tarot), g_game_state.last_used_consumable_tarot_planet_type, CARD_EDITION_BASE);
                         game_set_object_off_screen(&(g_game_state.consumables.items[g_game_state.consumables.item_count].tarot.draw));
-                        g_game_state.consumables.item_count++;                
+                        g_game_state.consumables.item_count++;
                     }
                     else
                     {
@@ -2998,7 +2998,7 @@ bool automated_event_open_booster()
     AUTO_EVENT_STAGE()
     {
         g_game_state.wealth -= game_util_get_booster_price(&(g_game_state.shop.boosters[g_game_state.highlighted_item].booster));
-        
+
         game_util_copy_deck(&g_game_state.full_deck, &g_game_state.current_deck);
         game_util_shuffle_deck(&g_game_state.current_deck);
         g_game_state.hand.card_count = 0;
@@ -3010,13 +3010,13 @@ bool automated_event_open_booster()
     // Go to the substage
 
     AUTO_EVENT_STAGE()
-    {        
+    {
         g_game_state.shop.opened_booster.type = g_game_state.shop.boosters[g_game_state.highlighted_item].booster.type;
         g_game_state.shop.opened_booster.size = g_game_state.shop.boosters[g_game_state.highlighted_item].booster.size;
-        
+
         g_game_state.shop.boosters[g_game_state.highlighted_item].available = false;
         g_game_state.shop.booster_count--;
-        
+
         if (g_game_state.shop.opened_booster.type == BOOSTER_PACK_TYPE_ARCANA ||
             g_game_state.shop.opened_booster.type == BOOSTER_PACK_TYPE_SPECTRAL)
         {
@@ -3191,7 +3191,7 @@ bool automated_event_run()
     g_automated_event = &(g_automated_event_stack[g_automated_event_stack_pos]);
 
     bool in_event = (g_automated_event->event_id != AUTOMATED_EVENT_NONE);
-    bool block_input = false;    
+    bool block_input = false;
 
     if (g_automated_event->event_id != AUTOMATED_EVENT_NONE)
     {

@@ -797,7 +797,7 @@ void graphics_set_texture(int texture, int filter)
     if (g_current_set_texture == texture && g_current_filter == filter) return;
 
     graphics_flush_quads();
-    
+
     g_current_set_texture = texture;
     g_current_filter = filter;
 
@@ -833,7 +833,7 @@ void graphics_flush_quads_end()
     {
         GU_DRAW_ARRAY_QUADS();
     }
-    
+
     GU_FINISH();
 }
 
@@ -987,7 +987,7 @@ int graphics_get_formatted_text_length(const char *text, void *item)
             {
                 case 'j':
                 case 't':
-                {                    
+                {
                     char str[32];
                     if (c == 'j') game_util_get_joker_hint_value((struct Joker*)item, str);
                     if (c == 't') game_util_get_tarot_hint_value((struct Tarot*)item, str);
@@ -1095,9 +1095,9 @@ void graphics_draw_text_formatted(int font, const char *text, void *item, float 
                 (size * g_fonts[font].width), (size * g_fonts[font].height),
                 ((int)c % g_fonts[font].length_x) * g_fonts[font].width, ((int)c / g_fonts[font].length_x) * g_fonts[font].height,
                 g_fonts[font].width, g_fonts[font].height, current_color);
-            length++;            
+            length++;
         }
-        c = text[++count];        
+        c = text[++count];
     }
 }
 
@@ -1224,5 +1224,5 @@ void graphics_unset_offscreen_render_target()
 	sceGuScissor(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	sceGuEnable(GU_SCISSOR_TEST);
 
-    GU_FINISH();    
+    GU_FINISH();
 }
