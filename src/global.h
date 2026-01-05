@@ -546,6 +546,7 @@ struct BlindType
     int type;
     const char *name;
     int u, v;
+    int cash_out_blind;
 };
 
 extern struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT];

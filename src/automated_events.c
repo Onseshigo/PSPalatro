@@ -1808,21 +1808,9 @@ bool automated_event_cash_out()
     
     AUTO_EVENT_STAGE() // Blind money
     {
-        switch(g_game_state.blind)
-        {
-            case GAME_BLIND_SMALL:
-                g_game_state.cash_out_blind = 3;
-                g_game_state.cash_out_value += g_game_state.cash_out_blind;
-                break;
-            case GAME_BLIND_LARGE:
-                g_game_state.cash_out_blind = 4;
-                g_game_state.cash_out_value += g_game_state.cash_out_blind;
-                break;
-            case GAME_BLIND_BOSS:
-                g_game_state.cash_out_blind = 5;
-                g_game_state.cash_out_value += g_game_state.cash_out_blind;
-                break;
-        }
+        struct BlindType *blind_type = &g_blind_types[g_game_state.blind];
+        g_game_state.cash_out_blind = blind_type->cash_out_blind;
+        g_game_state.cash_out_value += g_game_state.cash_out_blind;
     }
 
     AUTO_EVENT_STAGE_WAIT(CASHOUT_LINE_TIMESPAN)

@@ -340,9 +340,9 @@ struct BoosterPackType g_booster_types[BOOSTER_PACK_TYPE_COUNT][BOOSTER_PACK_SIZ
 };
 
 struct BlindType g_blind_types[GAME_BLIND_TYPE_COUNT] = { 
-    { GAME_BLIND_SMALL, "Small Blind",  0, 0},
-    { GAME_BLIND_LARGE, "Large Blind",  0, 1},
-    { GAME_BLIND_BOSS,  "Boss Blind",   0, 2},
+    { GAME_BLIND_SMALL, "Small Blind",  0, 0, 3},
+    { GAME_BLIND_LARGE, "Large Blind",  0, 1, 4},
+    { GAME_BLIND_BOSS,  "Boss Blind",   0, 2, 5},
 };
 
 double g_booster_packs_weights[BOOSTER_PACK_TYPE_COUNT][BOOSTER_PACK_SIZE_COUNT] = {
